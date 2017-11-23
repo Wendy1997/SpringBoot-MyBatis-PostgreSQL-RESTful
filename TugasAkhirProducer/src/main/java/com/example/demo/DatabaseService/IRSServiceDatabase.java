@@ -19,8 +19,8 @@ public class IRSServiceDatabase implements IRSService {
     @Override
     public IRS getIRS(String id_mahasiswa) {
         IRS irs = irsdao.selectIRS(id_mahasiswa);
-        irs.setKelasList(irsdao.selectKelas(irs.getId() + ""));
-
+        irs.setKelas_list(irsdao.selectKelas(irs.getId() + ""));
+        System.out.println(irs.toString());
         return irs;
     }
 
@@ -29,32 +29,9 @@ public class IRSServiceDatabase implements IRSService {
         List<IRS> irsList = irsdao.selectAllIRS(id_mahasiswa);
 
         for(int i = 0 ; i < irsList.size(); i++){
-            irsList.get(i).setKelasList(irsdao.selectKelas(irsList.get(i).getId() + ""));
+            irsList.get(i).setKelas_list(irsdao.selectKelas(irsList.get(i).getId() + ""));
         }
 
         return irsList;
-    }
-
-    @Override
-    public void addIRS(IRS irs, List<String> id_kelas) {
-        irsdao.addIrs(irs);
-
-        String id_irs = irsdao.selectIRS(irs.getId_mahasiswa() + "").getId() + "";
-
-        for(int i = 0 ; i < id_kelas.size(); i++){
-            irsdao.addIrsKelas(id_irs, id_kelas.get(i));
-        }
-
-    }
-
-    @Override
-    public void updateIRS(IRS irs, List<String> id_kelas) {
-        irsdao.deleteIrsKelas(irs.getId() + "");
-
-        String id_irs = irsdao.selectIRS(irs.getId_mahasiswa() + "").getId() + "";
-
-        for(int i = 0 ; i < id_kelas.size(); i++){
-            irsdao.addIrsKelas(id_irs, id_kelas.get(i));
-        }
     }
 }
