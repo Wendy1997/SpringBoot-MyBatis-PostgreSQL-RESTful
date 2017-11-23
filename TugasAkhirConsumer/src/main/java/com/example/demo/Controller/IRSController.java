@@ -38,7 +38,6 @@ public class IRSController {
 
     @PostMapping("/irs/add")
     public void irsAddSubmit(HttpServletRequest request, HttpServletResponse response) throws IOException{
-        System.out.println(request.getParameter("irs_list"));
         IRS irs = new IRS();
         irs.set_disetujui(false);
         irs.setId_mahasiswa(Integer.parseInt(request.getParameter("id_mahasiswa")));
@@ -54,16 +53,45 @@ public class IRSController {
 
         irsService.addIRS(irs);
 
-        response.getWriter().println(irsService.getIRS(irs.getId_mahasiswa() + "").getId());
+        response.getWriter().println(request.getParameter("id_mahasiswa"));
     }
 
-    @GetMapping("/irs/update")
-    public String irsUpdate(){
+    @GetMapping("/irs/update/{id}")
+    public String irsUpdate(@PathVariable(value="id") String id, Model model){
+        IRS irs = irsService.getIRS(id);
+        String kelas = "";
+        if(irs.getKelas_list().size() > 0){
+            for(int i = 0 ; i < irs.getKelas_list().size(); i++){
+                if(i < irs.getKelas_list().size() - 1){
+                    kelas += irs.getKelas_list().get(i) + ",";
+                } else{
+                    kelas += irs.getKelas_list().get(i);
+                }
+            }
+        }
+
+        model.addAttribute("irs", irs);
+        model.addAttribute("kelas", kelas);
         return "ubah-irs";
     }
 
     @PostMapping("/irs/update")
-    public String irsUpdateSubmit(){
-        return null;
+    public void irsUpdateSubmit(HttpServletRequest request, HttpServletResponse response) throws IOException{
+        IRS irs = new IRS();
+        irs.set_disetujui(false);
+        irs.setId_mahasiswa(Integer.parseInt(request.getParameter("id_mahasiswa")));
+        irs.setId_term(request.getParameter("id_term"));
+
+        String[] irs_list = request.getParameter("irs_list").split(",");
+        List<String> kelas_list = new ArrayList<>();
+        for(String kelas : irs_list){
+            kelas_list.add(kelas);
+        }
+
+        irs.setKelas_list(kelas_list);
+
+        irsService.updateIRS(irs);
+
+        response.getWriter().println(request.getParameter("id_mahasiswa"));
     }
 }

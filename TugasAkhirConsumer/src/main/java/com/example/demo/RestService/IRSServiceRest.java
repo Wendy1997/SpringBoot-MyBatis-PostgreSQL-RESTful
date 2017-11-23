@@ -46,17 +46,17 @@ public class IRSServiceRest implements IRSService {
         for(int i = 0 ; i < irs.getKelas_list().size(); i++){
             irsdao.addIrsKelas(id_irs, irs.getKelas_list().get(i));
         }
-
     }
 
     @Override
-    public void updateIRS(IRS irs, List<String> id_kelas) {
-        irsdao.deleteIrsKelas(irs.getId() + "");
-
+    public void updateIRS(IRS irs) {
         String id_irs = irsdao.selectIRS(irs.getId_mahasiswa() + "").getId() + "";
+        System.out.println(id_irs);
+        irsdao.deleteIrsKelas(id_irs);
 
-        for(int i = 0 ; i < id_kelas.size(); i++){
-            irsdao.addIrsKelas(id_irs, id_kelas.get(i));
+        for(int i = 0 ; i < irs.getKelas_list().size(); i++){
+            System.out.println(id_irs + " " + irs.getKelas_list().get(i));
+            irsdao.addIrsKelas(id_irs, irs.getKelas_list().get(i));
         }
     }
 }

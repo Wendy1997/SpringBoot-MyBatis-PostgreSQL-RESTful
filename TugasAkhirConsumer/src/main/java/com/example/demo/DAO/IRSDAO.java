@@ -13,7 +13,7 @@ public interface IRSDAO {
     void addIrs(IRS irs);
 
     @Insert("insert into irs_kelas values (#{id}, #{kelas})")
-    void addIrsKelas(@Param("id") String id,@Param("kelas") String kelas);
+    void addIrsKelas(@Param("id") String id, @Param("kelas") String kelas);
 
     @Delete("delete from irs_kelas where id_irs = #{id_irs}")
     void deleteIrsKelas(String id_irs);
