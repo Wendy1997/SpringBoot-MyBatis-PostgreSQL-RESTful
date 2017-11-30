@@ -12,10 +12,10 @@ public class MahasiswaDatabaseController {
         return "lihat-mahasiswa";
     }
 
-    @GetMapping("/mahasiswa/viewall")
-    public String mahasiswaViewAll(){
-        return "dashboard-admin";
-    }
+//    @GetMapping("/mahasiswa/viewall")
+//    public String mahasiswaViewAll(){
+//        return "dashboard-admin";
+//    }
 
     @GetMapping("/mahasiswa/add")
     public String mahasiswaAdd(){

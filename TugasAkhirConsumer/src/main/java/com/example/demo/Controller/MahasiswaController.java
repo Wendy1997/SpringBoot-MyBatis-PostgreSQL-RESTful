@@ -6,10 +6,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class MahasiswaController {
 
-    @GetMapping("/mahasiswa")
-    public String mahasiswaDashboard(){
-        return "dashboard-mahasiswa";
-    }
+//    @GetMapping("/mahasiswa")
+//    public String mahasiswaDashboard(){
+//        return "dashboard-mahasiswa";
+//    }
 
     @GetMapping("/mahasiswa/riwayat")
     public String mahasiswaRiwayat(){
