@@ -1,5 +1,7 @@
 package com.example.demo.Model;
 
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,6 +10,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Fakultas {
-    int id;
-    String namaFakultas;
+    Integer id_univ;
+    Integer id_fakultas;
+    Integer id_prodi;
+    String nama_fakultas;
+    String nama_univ;
+    String nama_prodi;
+    List<Fakultas> daftarUniv;
+    List<Fakultas> daftarFakultas;
+    List<Fakultas> daftarProdi;
 }
