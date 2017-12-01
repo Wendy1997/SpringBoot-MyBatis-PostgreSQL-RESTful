@@ -37,20 +37,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter
 	{
 		http
 		.authorizeRequests()
-		.antMatchers("/mahasiswa/viewall").hasAnyRole("ADMIN")
-		.antMatchers("/mahasiswa/view").hasAnyRole("ADMIN")
-		.antMatchers("/mahasiswa/add").hasAnyRole("ADMIN")
-		.antMatchers("/mahasiswa/update").hasAnyRole("ADMIN")
-		.antMatchers("/mahasiswa/delete").hasAnyRole("ADMIN")
-		.antMatchers("/mahasiswa/riwayat").hasRole("USER")
-		.antMatchers("/mahasiswa/ringkasan").hasRole("USER")
-		.antMatchers("/irs/**").hasRole("USER")
-		.and()
-		.formLogin().loginPage("/login").permitAll().successHandler(customSuccessHandler)
-		.and()
-		.csrf()
-		.and()
-		.logout().permitAll().logoutSuccessUrl("/login");
+		.antMatchers("/mahasiswa/viewall", "/mahasiswa/view", "/mahasiswa/add", 
+				"/mahasiswa/update", "/mahasiswa/delete").hasAnyRole("ADMIN")
+		.antMatchers("/mahasiswa/riwayat", "/mahasiswa/ringkasan", "/irs/**").hasRole("USER")
+		.and().formLogin().loginPage("/login").permitAll().successHandler(customSuccessHandler)
+		.and().csrf()
+		.and().logout().permitAll().logoutSuccessUrl("/login");
 	}
 	
 	@Autowired

@@ -11,13 +11,23 @@ import java.util.List;
 @AllArgsConstructor
 public class Mahasiswa {
     int id;
-    String namaMahasiswa;
-    long npm;
-    int idProdi;
-    double ip;
-    double ipk;
-    boolean isDapaLulus;
+    String nama;
+    String npm;
+    Integer sks_total;
+    Integer id_fakultas;
+    Integer id_program_studi;
+    Integer id_univ;
+    Double ip;
+    Double ipk;
+    Boolean is_dapat_lulus;
     boolean status;
+    String nama_fakultas;
+    String nama_prodi;
+    String nama_univ;
+    List<Fakultas> listUniv;
+    List<Fakultas> listFakultas;
+    List<Fakultas> listProdi;
     List<IRS> irsList;
     List<Nilai> nilaiList;
+  
 }

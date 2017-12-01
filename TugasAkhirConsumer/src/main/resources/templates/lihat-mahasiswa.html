@@ -2,8 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <link rel="apple-touch-icon" sizes="76x76" href="./img/apple-icon.png" />
-    <link rel="icon" type="image/png" href="./img/favicon.png" />
+    <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-icon.png" />
+    <link rel="icon" type="image/png" href="/img/favicon.png" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <title>SIAK - Beranda</title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
@@ -11,10 +11,10 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
     <!-- CSS Files -->
-    <link href="../css/bootstrap.min.css" rel="stylesheet" />
-    <link href="../css/now-ui-kit.css?v=1.1.0" rel="stylesheet" />
+    <link href="/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/css/now-ui-kit.css?v=1.1.0" rel="stylesheet" />
     <!-- CSS Just for demo purpose, don't include it in your project -->
-    <link href="../css/demo.css" rel="stylesheet" />
+    <link href="/css/demo.css" rel="stylesheet" />
 </head>
 
 <body class="profile-page sidebar-collapse">
@@ -48,7 +48,7 @@
                     <span class="navbar-toggler-bar bar3"></span>
                 </button>
             </div>
-            <div class="collapse navbar-collapse justify-content-end" id="navigation" data-nav-image="../img/blurred-image-1.jpg">
+            <div class="collapse navbar-collapse justify-content-end" id="navigation" data-nav-image="img/blurred-image-1.jpg">
                 <ul class="navbar-nav">
                     <li class="nav-item">
                         <a class="nav-link" href="https://github.com/creativetimofficial/now-ui-kit/issues">Mahasiswa</a>
@@ -69,26 +69,26 @@
     <!-- End Navbar -->
     <div class="wrapper">
         <div class="page-header page-header-small" filter-color="orange">
-            <div class="page-header-image" data-parallax="true" style="background-image: url('../img/UI.jpg');">
+            <div class="page-header-image" data-parallax="true" style="background-image: url('img/UI.jpg');">
             </div>
             <div class="container">
                 <div class="content-center">
                     <div class="photo-container">
                         <img src="../img/ryan.jpg" alt="" />
                     </div>
-                    <h3 class="title">Wendy Damar Wisma Trisna Bayu</h3>
-                    <p class="category">1506737823</p>
+                    <h3 class="title" th:text="${mahasiswa.nama}">Wendy Damar Wisma Trisna Bayu</h3>
+                    <p class="category" th:text="${mahasiswa.npm}">1506737823</p>
                     <div class="content">
                         <div class="social-description">
-                            <h2>138</h2>
+                            <h2 th:text="${mahasiswa.sks_total}">138</h2>
                             <p>SKS</p>
                         </div>
                         <div class="social-description">
-                            <h2>3.6</h2>
+                            <h2 th:text="${mahasiswa.ip}">3.6</h2>
                             <p>IP</p>
                         </div>
                         <div class="social-description">
-                            <h2>3.4</h2>
+                            <h2 th:text="${mahasiswa.ipk}">3.4</h2>
                             <p>IPK</p>
                         </div>
                     </div>
@@ -109,10 +109,12 @@
                                 <div class="card-body">
                                     <!-- Tab panes -->
                                     <div class="tab-content">
-                                            <p>Nama : Wendy Damar Wisma Trisna Bayu</p>
-                                            <p>NPM : 1506737823</p>
-                                            <p>Fakultas : Ilmu Komputer</p>
-                                            <p>Jurusan : Sistem Informasi</p>
+                                            <p th:text="'Nama : ' + ${mahasiswa.nama}">Nama : Wendy Damar Wisma Trisna Bayu</p>
+                                            <p th:text="'NPM : ' + ${mahasiswa.npm}">NPM : 1506737823</p>
+                                            <p th:text="'Fakultas : ' + ${fakultas}">Fakultas : Ilmu Komputer</p>
+                                            <p th:text="'Prodi : ' + ${prodi}">Jurusan : Sistem Informasi</p>
+                                            <p th:if="${mahasiswa.is_dapat_lulus} == 0" th:text='Belum Lulus'>Belum lulus</p>
+                                            <p th:if="${mahasiswa.is_dapat_lulus}" th:text='Lulus'>Belum lulus</p>
                                             <div class="text-center"><button class="btn btn-primary btn-round" type="button">Ubah IRS</button></div>
                                     </div>
                                 </div>
@@ -130,44 +132,44 @@
                                     <!-- Tab panes -->
                                     <div class="tab-content text-center">
                                         <div class="tab-pane active" id="home1" role="tabpanel">
-										    <table class="table table-striped table-responsive">
-										    	<thead>
-										      		<tr>
-												        <th class="text-center">Kode Matkul</th>
-												        <th class="text-center">Mata Kuliah</th>
-												        <th class="text-center">Kelas</th>
-												        <th class="text-center">Jadwal</th>
-												        <th class="text-center">Ruangan</th>
-												        <th class="text-center">Dosen</th>
-											      	</tr>
-										    	</thead>
-										    	<tbody>
-										      		<tr>
-												        <td>CSC123123</td>
-												        <td>Sistem Interaksi</td>
-												        <td>B</td>
-												        <td>Senin 08.00 - 09.00 Rabu 08.00 - 10.00</td>
-												        <td>2603</td>
-												        <td>Ade Azurat S.Kom</td>
-											      	</tr>
-											      	<tr>
-												        <td>CSC123123</td>
-												        <td>Sistem Interaksi</td>
-												        <td>B</td>
-												        <td>Senin 08.00 - 09.00 Rabu 08.00 - 10.00</td>
-												        <td>2603</td>
-												        <td>Ade Azurat S.Kom</td>
-												    </tr>
-												    <tr>
-												        <td>CSC123123</td>
-												        <td>Sistem Interaksi</td>
-												        <td>B</td>
-												        <td>Senin 08.00 - 09.00 Rabu 08.00 - 10.00</td>
-												        <td>2603</td>
-												        <td>Ade Azurat S.Kom</td>
-											      	</tr>
-											    </tbody>
-										  </table>
+                                            <table class="table table-striped table-responsive">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="text-center">Kode Matkul</th>
+                                                        <th class="text-center">Mata Kuliah</th>
+                                                        <th class="text-center">Kelas</th>
+                                                        <th class="text-center">Jadwal</th>
+                                                        <th class="text-center">Ruangan</th>
+                                                        <th class="text-center">Dosen</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>CSC123123</td>
+                                                        <td>Sistem Interaksi</td>
+                                                        <td>B</td>
+                                                        <td>Senin 08.00 - 09.00 Rabu 08.00 - 10.00</td>
+                                                        <td>2603</td>
+                                                        <td>Ade Azurat S.Kom</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>CSC123123</td>
+                                                        <td>Sistem Interaksi</td>
+                                                        <td>B</td>
+                                                        <td>Senin 08.00 - 09.00 Rabu 08.00 - 10.00</td>
+                                                        <td>2603</td>
+                                                        <td>Ade Azurat S.Kom</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>CSC123123</td>
+                                                        <td>Sistem Interaksi</td>
+                                                        <td>B</td>
+                                                        <td>Senin 08.00 - 09.00 Rabu 08.00 - 10.00</td>
+                                                        <td>2603</td>
+                                                        <td>Ade Azurat S.Kom</td>
+                                                    </tr>
+                                                </tbody>
+                                          </table>
                                         </div>
                                     </div>
                                 </div>
@@ -189,7 +191,6 @@
                     </ul>
                 </nav>
                 <div class="copyright">
-                    &copy;
                     <script>
                         document.write(new Date().getFullYear())
                     </script>, Designed by
@@ -201,16 +202,16 @@
     </div>
 </body>
 <!--   Core JS Files   -->
-<script src="../js/core/jquery.3.2.1.min.js" type="text/javascript"></script>
-<script src="../js/core/popper.min.js" type="text/javascript"></script>
-<script src="../js/core/bootstrap.min.js" type="text/javascript"></script>
+<script src="js/core/jquery.3.2.1.min.js" type="text/javascript"></script>
+<script src="js/core/popper.min.js" type="text/javascript"></script>
+<script src="js/core/bootstrap.min.js" type="text/javascript"></script>
 <!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
-<script src="../js/plugins/bootstrap-switch.js"></script>
+<script src="js/plugins/bootstrap-switch.js"></script>
 <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
-<script src="../js/plugins/nouislider.min.js" type="text/javascript"></script>
+<script src="js/plugins/nouislider.min.js" type="text/javascript"></script>
 <!--  Plugin for the DatePicker, full documentation here: https://github.com/uxsolutions/bootstrap-datepicker -->
-<script src="../js/plugins/bootstrap-datepicker.js" type="text/javascript"></script>
+<script src="js/plugins/bootstrap-datepicker.js" type="text/javascript"></script>
 <!-- Control Center for Now Ui Kit: parallax effects, scripts for the example pages etc -->
-<script src="../js/now-ui-kit.js?v=1.1.0" type="text/javascript"></script>
+<script src="js/now-ui-kit.js?v=1.1.0" type="text/javascript"></script>
 
 </html>
