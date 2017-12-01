@@ -46,11 +46,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter
 		.antMatchers("/mahasiswa/ringkasan").hasRole("USER")
 		.antMatchers("/irs/**").hasRole("USER")
 		.and()
-		.formLogin().loginPage("/login").successHandler(customSuccessHandler)
+		.formLogin().loginPage("/login").permitAll().successHandler(customSuccessHandler)
 		.and()
 		.csrf()
 		.and()
-		.logout().permitAll();
+		.logout().permitAll().logoutSuccessUrl("/login");
 	}
 	
 	@Autowired
