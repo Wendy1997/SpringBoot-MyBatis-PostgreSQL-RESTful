@@ -39,8 +39,6 @@ public class MahasiswaDatabaseController {
 	
 	@Autowired
 	FakultasService fakultasDAO;
-<<<<<<< HEAD
-
 	
     @GetMapping("/mahasiswa/view/{npm}")
     public String mahasiswaView(@PathVariable(value="npm") String npm, Model model){
@@ -70,46 +68,6 @@ public class MahasiswaDatabaseController {
     		
     		model.addAttribute("mahasiswa", view);
         return "lihat-mahasiswa";
-    }
-
-    @GetMapping("/mahasiswa/viewall")
-    public String mahasiswaViewAll(Model model){
-    	
-    		List<Mahasiswa> viewall = mahasiswaDAO.selectAllMahasiswa();
-    		model.addAttribute("mahasiswa", viewall);
-        return "dashboard-admin";
-=======
-
-	
-    @GetMapping("/mahasiswa/view/{npm}")
-    public String mahasiswaView(@PathVariable(value="npm") String npm, Model model){
-    		Mahasiswa view = mahasiswaDAO.dataView(npm);
-    		System.out.println(view.getId_fakultas());
-    		Map<String, Object> universitas = fakultasDAO.namaUniv(view.getId_univ());
-    		Map<String, Object> resultUniversitas = (Map<String, Object>) universitas.get("result");
-    		Map<String, Object> namauniversitas = (Map<String, Object>) resultUniversitas.get("universitas");
-    		
-    		String namaUniversitas = namauniversitas.get("nama_univ").toString();
-    		model.addAttribute("universitas", namaUniversitas);
-    		
-    		Map<String, Object> fakultas = fakultasDAO.namaFakultas(view.getId_univ(), view.getId_fakultas());
-    		Map<String, Object> resultFakultas = (Map<String, Object>) fakultas.get("result");
-    		Map<String, Object> namafakultas = (Map<String, Object>) resultFakultas.get("fakultas");
-    		
-    		String namaFakultas = namafakultas.get("nama_fakultas").toString();
-    		model.addAttribute("fakultas", namaFakultas);
-    		
-
-    		Map<String, Object> prodi = fakultasDAO.namaProdi(view.getId_univ(), view.getId_fakultas(), view.getId_program_studi());
-       	Map<String, Object> resultProdi = (Map<String, Object>) prodi.get("result");
-    		Map<String, Object> namaprodi = (Map<String, Object>) resultProdi.get("prodi");
-    		
-    		String namaProdi = namaprodi.get("nama_prodi").toString();
-    		model.addAttribute("prodi", namaProdi);
-    		
-    		model.addAttribute("mahasiswa", view);
-        return "lihat-mahasiswa";
->>>>>>> login
     }
 
     @GetMapping("/mahasiswa/add")
