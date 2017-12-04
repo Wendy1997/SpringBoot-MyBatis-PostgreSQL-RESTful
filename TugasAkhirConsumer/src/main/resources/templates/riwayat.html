@@ -45,38 +45,14 @@
 												      	</tr>
 											    	</thead>
 											    	<tbody>
-											      		<tr>
-													        <td>1</td>
-													        <td>CSC1234567</td>
+											      		<tr th:each="kelas, iterationStatus: ${irs.kelas_list}">
+													        <td th:text="${iterationStatus.count}">1</td>
+													        <td th:text="${kelas}">CSC1234567</td>
 													        <td>Dasar-Dasar Pemrograman</td>
 													        <td>6</td>
 	                                                        <td>85.0</td>
 	                                                        <td>A</td>
 												      	</tr>
-												      	<tr>
-													        <td>2</td>
-	                                                        <td>CSC1234567</td>
-	                                                        <td>MPKT-B</td>
-	                                                        <td>6</td>
-	                                                        <td>85.0</td>
-	                                                        <td>A</td>
-													    </tr>
-													    <tr>
-	                                                       <td>3</td>
-	                                                        <td>CSC1234567</td>
-	                                                        <td>Matematika Dasar 1</td>
-	                                                        <td>3</td>
-	                                                        <td>75.0</td>
-	                                                        <td>B</td>
-	                                                    </tr>
-	                                                    <tr>
-	                                                        <td>4</td>
-	                                                        <td>CSC1234567</td>
-	                                                        <td>Fisika Dasar 1</td>
-	                                                        <td>3</td>
-	                                                        <td>65.0</td>
-	                                                        <td>B-</td>
-	                                                    </tr>
 												    </tbody>
 											  </table>
 	                                        </div>
