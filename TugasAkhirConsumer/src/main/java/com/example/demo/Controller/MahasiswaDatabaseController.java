@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletResponse;
 
+import com.example.demo.Service.KurikulumService;
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -39,6 +40,8 @@ public class MahasiswaDatabaseController {
 	@Autowired
 	FakultasService fakultasDAO;
 
+	@Autowired
+    KurikulumService kurikulumService;
 	
     @GetMapping("/mahasiswa/view/{npm}")
     public String mahasiswaView(@PathVariable(value="npm") String npm, Model model){
@@ -60,7 +63,7 @@ public class MahasiswaDatabaseController {
     		
 
     		Map<String, Object> prodi = fakultasDAO.namaProdi(view.getId_univ(), view.getId_fakultas(), view.getId_program_studi());
-       	Map<String, Object> resultProdi = (Map<String, Object>) prodi.get("result");
+       	    Map<String, Object> resultProdi = (Map<String, Object>) prodi.get("result");
     		Map<String, Object> namaprodi = (Map<String, Object>) resultProdi.get("prodi");
     		
     		String namaProdi = namaprodi.get("nama_prodi").toString();
@@ -81,11 +84,13 @@ public class MahasiswaDatabaseController {
     @GetMapping("/mahasiswa/add")
     public String mahasiswaAdd(Model model){
     	Gson gson = new Gson();
-    	String univ = fakultasDAO.listUniv();
-    	List<Universitas> namaUniv = gson.fromJson(univ, null);
-    	System.out.println("nama = " + univ.toString());
-    	model.addAttribute("univ", univ);
-
+//    	List<Universitas> univ = kurikulumService.getUniversitasList();
+        System.out.println(kurikulumService.getUniversitasList().toString());
+        System.out.println(kurikulumService.getUniversitas("1").toString());
+        System.out.println(kurikulumService.getFakultasList("1").toString());
+        System.out.println(kurikulumService.getFakultas("1", "1").toString());
+        System.out.println(kurikulumService.getProdiList("1","1").toString());
+        System.out.println(kurikulumService.getProdi("1","1","1").toString());
         return "tambah-mahasiswa";
     }
     
