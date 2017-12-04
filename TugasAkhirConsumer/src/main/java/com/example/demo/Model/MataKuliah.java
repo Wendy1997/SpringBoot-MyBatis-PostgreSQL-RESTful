@@ -13,4 +13,5 @@ public class MataKuliah {
     String namaMatkul;
     int sks;
     String namaDosen;
+    
 }

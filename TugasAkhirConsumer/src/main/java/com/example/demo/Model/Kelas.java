@@ -11,4 +11,8 @@ public class Kelas {
     int id;
     int idMataKuliah;
     String namaKelas;
+    
+    //Untuk Riwayat
+    String kodeMatkul;
+    int sks;
 }

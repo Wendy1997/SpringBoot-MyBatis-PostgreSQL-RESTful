@@ -15,4 +15,5 @@ public class IRS {
     boolean is_disetujui;
     String id_term;
     List<String> kelas_list;
+    
 }
