@@ -9,7 +9,7 @@ import com.example.demo.Model.Fakultas;
 import com.example.demo.Model.Universitas;
 import com.example.demo.Service.FakultasService;
 public class FakultasServiceRest implements FakultasService {
-	
+
 	@Autowired
 	private FakultasService fakultas;
 
@@ -48,8 +48,4 @@ public class FakultasServiceRest implements FakultasService {
 		// TODO Auto-generated method stub
 		return fakultas.listProdi(id_univ, id_fakultas);
 	}
-
-	
-	
-	
 }

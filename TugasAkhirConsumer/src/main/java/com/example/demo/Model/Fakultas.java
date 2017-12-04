@@ -12,10 +12,7 @@ import lombok.NoArgsConstructor;
 public class Fakultas {
     Integer id_univ;
     Integer id_fakultas;
-    Integer id_prodi;
     String nama_fakultas;
-    String nama_univ;
-    String nama_prodi;
     List<Fakultas> daftarUniv;
     List<Fakultas> daftarFakultas;
     List<Fakultas> daftarProdi;

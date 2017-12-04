@@ -9,6 +9,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 
+import com.example.demo.Service.KurikulumService;
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -36,6 +37,8 @@ public class MahasiswaDatabaseController {
 	@Autowired
 	FakultasService fakultasDAO;
 
+	@Autowired
+    KurikulumService kurikulumService;
 	
     @GetMapping("/mahasiswa/view/{npm}")
     public String mahasiswaView(@PathVariable(value="npm") String npm, Model model){
@@ -58,7 +61,7 @@ public class MahasiswaDatabaseController {
     		
 
     		Map<String, Object> prodi = fakultasDAO.namaProdi(view.getId_univ(), view.getId_fakultas(), view.getId_program_studi());
-       	Map<String, Object> resultProdi = (Map<String, Object>) prodi.get("result");
+       	    Map<String, Object> resultProdi = (Map<String, Object>) prodi.get("result");
     		Map<String, Object> namaprodi = (Map<String, Object>) resultProdi.get("prodi");
     		
     		String namaProdi = namaprodi.get("nama_prodi").toString();
@@ -78,6 +81,7 @@ public class MahasiswaDatabaseController {
 
     @GetMapping("/mahasiswa/add")
     public String mahasiswaAdd(Model model){
+<<<<<<< HEAD
     Map<String, Object> list = fakultasDAO.listUniv();
     Map<String, Object> nama = (Map<String, Object>) list.get("result");
 	//ArrayList<String> hasil = (ArrayList<String>) nama.get("univList");
@@ -86,6 +90,16 @@ public class MahasiswaDatabaseController {
 
     	
 
+=======
+    	Gson gson = new Gson();
+//    	List<Universitas> univ = kurikulumService.getUniversitasList();
+        System.out.println(kurikulumService.getUniversitasList().toString());
+        System.out.println(kurikulumService.getUniversitas("1").toString());
+        System.out.println(kurikulumService.getFakultasList("1").toString());
+        System.out.println(kurikulumService.getFakultas("1", "1").toString());
+        System.out.println(kurikulumService.getProdiList("1","1").toString());
+        System.out.println(kurikulumService.getProdi("1","1","1").toString());
+>>>>>>> 87c4de1418e93356aab8ff16f14243e279919f3b
         return "tambah-mahasiswa";
     }
     
