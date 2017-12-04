@@ -29,7 +29,7 @@
                                 
                                 	<!-- SECTION IRS -->
                                 	<div th:each="irs, iterationStatus: ${irs}">
-`                                		<div class="justify-content-left"><h5 th:text="${irs.id}">Tahun Ajaran 2015/2016 - Term 1</h5></div>
+`                                		<div class="justify-content-left"><h5 th:text="'Term ' + ${irs.id}">Tahun Ajaran 2015/2016 - Term 1</h5></div>
                                     
 	                                    <div class="tab-content text-center">
 	                                        <div class="tab-pane active" id="home1" role="tabpanel">
