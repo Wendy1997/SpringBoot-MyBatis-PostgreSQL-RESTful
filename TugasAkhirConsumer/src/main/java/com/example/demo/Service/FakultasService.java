@@ -15,7 +15,7 @@ public interface FakultasService {
 	Map<String, Object> namaFakultas (Integer id_univ, Integer id_fakultas);
 	Map<String, Object> namaProdi (Integer id_univ, Integer id_fakultas, Integer id_prodi);
 	
-	String listUniv ();
+	Map<String, Object> listUniv ();
 	List<Fakultas> listFakultas (Integer id_univ);
 	List<Fakultas> listProdi (Integer id_univ, Integer id_fakultas);
 	

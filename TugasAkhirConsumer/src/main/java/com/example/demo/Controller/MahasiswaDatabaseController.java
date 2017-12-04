@@ -1,18 +1,17 @@
 package com.example.demo.Controller;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+
 import java.io.IOException;
 import java.util.ArrayList;
-
-
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,9 +19,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
-import com.carrotsearch.ant.tasks.junit4.dependencies.com.google.common.reflect.TypeToken;
 import com.example.demo.Model.Fakultas;
 import com.example.demo.Model.Mahasiswa;
 import com.example.demo.Model.Universitas;
@@ -54,6 +51,7 @@ public class MahasiswaDatabaseController {
     		Map<String, Object> fakultas = fakultasDAO.namaFakultas(view.getId_univ(), view.getId_fakultas());
     		Map<String, Object> resultFakultas = (Map<String, Object>) fakultas.get("result");
     		Map<String, Object> namafakultas = (Map<String, Object>) resultFakultas.get("fakultas");
+    		System.out.println(resultFakultas.get("fakultas"));
     		
     		String namaFakultas = namafakultas.get("nama_fakultas").toString();
     		model.addAttribute("fakultas", namaFakultas);
@@ -80,11 +78,13 @@ public class MahasiswaDatabaseController {
 
     @GetMapping("/mahasiswa/add")
     public String mahasiswaAdd(Model model){
-    	Gson gson = new Gson();
-    	String univ = fakultasDAO.listUniv();
-    	List<Universitas> namaUniv = gson.fromJson(univ, null);
-    	System.out.println("nama = " + univ.toString());
-    	model.addAttribute("univ", univ);
+    Map<String, Object> list = fakultasDAO.listUniv();
+    Map<String, Object> nama = (Map<String, Object>) list.get("result");
+	//ArrayList<String> hasil = (ArrayList<String>) nama.get("univList");
+	//String listUniv = hasil.toString().replace("[", "").replace("]", "");
+	
+
+    	
 
         return "tambah-mahasiswa";
     }

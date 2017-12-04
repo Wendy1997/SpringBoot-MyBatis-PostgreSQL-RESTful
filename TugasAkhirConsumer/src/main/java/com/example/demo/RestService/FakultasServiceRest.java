@@ -32,7 +32,7 @@ public class FakultasServiceRest implements FakultasService {
 	}
 
 	@Override
-	public String listUniv() {
+	public Map<String, Object> listUniv() {
 		// TODO Auto-generated method stub
 		return fakultas.listUniv();
 	}

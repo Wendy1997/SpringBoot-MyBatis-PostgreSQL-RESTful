@@ -1,5 +1,6 @@
 package com.example.demo.DAO;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -91,18 +92,14 @@ public class MahasiswaDAOImpl implements MahasiswaService, FakultasService {
 	}
 
 	@Override
-	public String listUniv() {
+	public Map<String, Object> listUniv() {
 		// TODO Auto-generated method stub
 		
 //		ResponseEntity<List<Universitas>> responseEntity = restTemplate.exchange("https://apap2017-univ-apps.herokuapp.com/getUniversitasList", HttpMethod.GET, null, new ParameterizedTypeReference<List<Universitas>>() {
 //		});
 		//System.out.println("nana = " +responseEntity.toString());
 		Map<String, Object> universitas = restTemplate.getForObject("https://apap2017-univ-apps.herokuapp.com/getUniversitasList", Map.class);
-		Map<String, Object> nama = (Map<String, Object>) universitas.get("result");
-		String[] hasil = nama.get("univList").toString().split("[{}]");
-		String [] listUniv = new String[] {hasil[1], hasil[3], hasil[5]};
- 		System.out.println(listUniv.toString());
-		return nama.get("univList").toString();
+		return universitas;
 	}
 
 	@Override
