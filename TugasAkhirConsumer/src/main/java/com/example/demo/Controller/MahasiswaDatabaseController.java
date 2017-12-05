@@ -17,6 +17,7 @@ import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -78,7 +79,6 @@ public class MahasiswaDatabaseController {
     @GetMapping("/mahasiswa/viewall")
     public String mahasiswaViewAll(Model model){
     		List<Mahasiswa> viewall = mahasiswaDAO.selectAllMahasiswa();
-//    		ArrayList<String>  hasil = new ArrayList<>();
     		for(int i = 0; i < viewall.size(); i++) {
     			System.out.println(viewall.get(i).getId_univ() +" "+ viewall.get(i).getId_fakultas());
     			Map<String, Object> fakultas = fakultasDAO.namaFakultas(viewall.get(i).getId_univ(), viewall.get(i).getId_fakultas());
@@ -95,18 +95,7 @@ public class MahasiswaDatabaseController {
     			
     			String namaProdi = namaprodi.get("nama_prodi").toString();
     			viewall.get(i).setNama_prodi(namaProdi);
-
     		}
-    			
-    	
-    			
-			
-			
-    		
-		
-
-		
-		
     		
     		model.addAttribute("mahasiswa", viewall);
         return "dashboard-admin";
@@ -154,7 +143,7 @@ public class MahasiswaDatabaseController {
     
     PrintWriter out = response.getWriter();
     out.println(hasil);
-    }
+    
     
     @PostMapping("/mahasiswa/update/prodi")
     public void mahasiswaUpdateprodi(HttpServletRequest request, HttpServletResponse response) throws IOException {
