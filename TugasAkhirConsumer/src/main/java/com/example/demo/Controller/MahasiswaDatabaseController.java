@@ -76,30 +76,30 @@ public class MahasiswaDatabaseController {
         return "lihat-mahasiswa";
     }
 
-    @GetMapping("/mahasiswa/viewall")
-    public String mahasiswaViewAll(Model model){
-    		List<Mahasiswa> viewall = mahasiswaDAO.selectAllMahasiswa();
-    		for(int i = 0; i < viewall.size(); i++) {
-    			System.out.println(viewall.get(i).getId_univ() +" "+ viewall.get(i).getId_fakultas());
-    			Map<String, Object> fakultas = fakultasDAO.namaFakultas(viewall.get(i).getId_univ(), viewall.get(i).getId_fakultas());
-    			Map<String, Object> resultFakultas = (Map<String, Object>) fakultas.get("result");
-    			Map<String, Object> namafakultas = (Map<String, Object>) resultFakultas.get("fakultas");
-    			
-    			String namaFakultas = namafakultas.get("nama_fakultas").toString();
-    			System.out.println(namaFakultas);
-    			viewall.get(i).setNama_fakultas(namaFakultas);
-    			
-    			Map<String, Object> prodi = fakultasDAO.namaProdi(viewall.get(i).getId_univ(), viewall.get(i).getId_fakultas(), viewall.get(i).getId_program_studi());
-    	   	    Map<String, Object> resultProdi = (Map<String, Object>) prodi.get("result");
-    			Map<String, Object> namaprodi = (Map<String, Object>) resultProdi.get("prodi");
-    			
-    			String namaProdi = namaprodi.get("nama_prodi").toString();
-    			viewall.get(i).setNama_prodi(namaProdi);
-    		}
-    		
-    		model.addAttribute("mahasiswa", viewall);
-        return "dashboard-admin";
-    }
+//    @GetMapping("/mahasiswa/viewall")
+//    public String mahasiswaViewAll(Model model){
+//    		List<Mahasiswa> viewall = mahasiswaDAO.selectAllMahasiswa();
+//    		for(int i = 0; i < viewall.size(); i++) {
+//    			System.out.println(viewall.get(i).getId_univ() +" "+ viewall.get(i).getId_fakultas());
+//    			Map<String, Object> fakultas = fakultasDAO.namaFakultas(viewall.get(i).getId_univ(), viewall.get(i).getId_fakultas());
+//    			Map<String, Object> resultFakultas = (Map<String, Object>) fakultas.get("result");
+//    			Map<String, Object> namafakultas = (Map<String, Object>) resultFakultas.get("fakultas");
+//    			
+//    			String namaFakultas = namafakultas.get("nama_fakultas").toString();
+//    			System.out.println(namaFakultas);
+//    			viewall.get(i).setNama_fakultas(namaFakultas);
+//    			
+//    			Map<String, Object> prodi = fakultasDAO.namaProdi(viewall.get(i).getId_univ(), viewall.get(i).getId_fakultas(), viewall.get(i).getId_program_studi());
+//    	   	    Map<String, Object> resultProdi = (Map<String, Object>) prodi.get("result");
+//    			Map<String, Object> namaprodi = (Map<String, Object>) resultProdi.get("prodi");
+//    			
+//    			String namaProdi = namaprodi.get("nama_prodi").toString();
+//    			viewall.get(i).setNama_prodi(namaProdi);
+//    		}
+//    		
+//    		model.addAttribute("mahasiswa", viewall);
+//        return "dashboard-admin";
+//    }
 
     @GetMapping("/mahasiswa/add")
     public String mahasiswaAdd(@RequestParam(value = "id_univ", required = false) Integer id_univ, Model model){
@@ -114,6 +114,7 @@ public class MahasiswaDatabaseController {
     		
     List<Fakultas> fakultas = kurikulumService.getFakultasList(Integer.parseInt(request.getParameter("namafakultas")));
     
+<<<<<<< HEAD
     Gson gson = new Gson();
     String hasil = gson.toJson(fakultas);
     
@@ -138,21 +139,58 @@ public class MahasiswaDatabaseController {
     		
     List<Fakultas> fakultas = kurikulumService.getFakultasList(Integer.parseInt(request.getParameter("namafakultas")));
     
+=======
+>>>>>>> login
     Gson gson = new Gson();
     String hasil = gson.toJson(fakultas);
     
     PrintWriter out = response.getWriter();
     out.println(hasil);
+<<<<<<< HEAD
+=======
+    }
+    
+    @PostMapping("/mahasiswa/add/prodi")
+    public void mahasiswaAddprodi(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    		
+    List<ProgramStudi> prodi = kurikulumService.getProdiList(Integer.parseInt(request.getParameter("namafakultas")), Integer.parseInt(request.getParameter("namaprodi")));
+    
+    Gson gson = new Gson();
+    String hasil = gson.toJson(prodi);
+    
+    PrintWriter out = response.getWriter();
+    out.println(hasil);
+    }
+
+    @PostMapping("/mahasiswa/update/fakultas")
+    public void mahasiswaUpdateFakultas(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    		
+	    List<Fakultas> fakultas = kurikulumService.getFakultasList(Integer.parseInt(request.getParameter("namafakultas")));
+	    
+	    Gson gson = new Gson();
+	    String hasil = gson.toJson(fakultas);
+	    
+	    PrintWriter out = response.getWriter();
+	    out.println(hasil);
+    }
+>>>>>>> login
     
     
     @PostMapping("/mahasiswa/update/prodi")
     public void mahasiswaUpdateprodi(HttpServletRequest request, HttpServletResponse response) throws IOException {
     		
     	List<ProgramStudi> prodi = kurikulumService.getProdiList(Integer.parseInt(request.getParameter("namafakultas")), Integer.parseInt(request.getParameter("namaprodi")));
+<<<<<<< HEAD
         
         Gson gson = new Gson();
         String hasil = gson.toJson(prodi);
         
+=======
+        
+        Gson gson = new Gson();
+        String hasil = gson.toJson(prodi);
+        
+>>>>>>> login
         PrintWriter out = response.getWriter();
         out.println(hasil);
     }
