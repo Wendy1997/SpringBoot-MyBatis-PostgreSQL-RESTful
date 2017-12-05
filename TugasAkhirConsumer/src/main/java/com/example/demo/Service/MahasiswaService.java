@@ -14,9 +14,7 @@ public interface MahasiswaService {
 
 	Mahasiswa dataView(String npm);
 
-	void updateMahasiswa(Mahasiswa mahasiswa);
-
-	void deleteMahasiswa(Mahasiswa mahasiswa);
+	void update(Mahasiswa mahasiswa);
 
 	Mahasiswa lulus(String lulus);
 	

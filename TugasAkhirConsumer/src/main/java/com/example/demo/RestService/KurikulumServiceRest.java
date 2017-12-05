@@ -35,7 +35,7 @@ public class KurikulumServiceRest implements KurikulumService {
 
 
     @Override
-    public Universitas getUniversitas(String id_univ) {
+    public Universitas getUniversitas(Integer id_univ) {
         Gson gson = new Gson();
         Map<String, Object> json = restTemplate.getForObject("https://apap2017-univ-apps.herokuapp.com/getUniversitas/" + id_univ, Map.class);
         Map<String, Object> map = gson.fromJson(json.get("result").toString().replace(" ", ""), new TypeToken<Map<String, Object>>(){}.getType());
@@ -44,7 +44,7 @@ public class KurikulumServiceRest implements KurikulumService {
     }
 
     @Override
-    public List<Fakultas> getFakultasList(String id_univ) {
+    public List<Fakultas> getFakultasList(Integer id_univ) {
         Gson gson = new Gson();
         Map<String, Object> json = restTemplate.getForObject("https://apap2017-univ-apps.herokuapp.com/getFakultasList/" + id_univ, Map.class);
         Map<String, Object> map = gson.fromJson(json.get("result").toString().replace(" ", ""), new TypeToken<Map<String, Object>>(){}.getType());
@@ -53,7 +53,7 @@ public class KurikulumServiceRest implements KurikulumService {
     }
 
     @Override
-    public Fakultas getFakultas(String id_univ, String id_fakultas) {
+    public Fakultas getFakultas(Integer id_univ, Integer id_fakultas) {
         Gson gson = new Gson();
         Map<String, Object> json = restTemplate.getForObject("https://apap2017-univ-apps.herokuapp.com/getFakultas/" + id_univ + "/" + id_fakultas, Map.class);
         Map<String, Object> map = gson.fromJson(json.get("result").toString().replace(" ", ""), new TypeToken<Map<String, Object>>(){}.getType());
@@ -62,7 +62,7 @@ public class KurikulumServiceRest implements KurikulumService {
     }
 
     @Override
-    public List<ProgramStudi> getProdiList(String id_univ, String id_fakultas) {
+    public List<ProgramStudi> getProdiList(Integer id_univ, Integer id_fakultas) {
         Gson gson = new Gson();
         Map<String, Object> json = restTemplate.getForObject("https://apap2017-univ-apps.herokuapp.com/getProdiList/" + id_univ + "/" + id_fakultas, Map.class);
         Map<String, Object> map = gson.fromJson(json.get("result").toString().replace(" ", ""), new TypeToken<Map<String, Object>>(){}.getType());
@@ -71,7 +71,7 @@ public class KurikulumServiceRest implements KurikulumService {
     }
 
     @Override
-    public ProgramStudi getProdi(String id_univ, String id_fakultas, String id_prodi) {
+    public ProgramStudi getProdi(Integer id_univ, Integer id_fakultas, Integer id_prodi) {
         Gson gson = new Gson();
         Map<String, Object> json = restTemplate.getForObject("https://apap2017-univ-apps.herokuapp.com/getProdi/" + id_univ + "/" + id_fakultas + "/" + id_prodi, Map.class);
         Map<String, Object> map = gson.fromJson(json.get("result").toString().replace(" ", ""), new TypeToken<Map<String, Object>>(){}.getType());

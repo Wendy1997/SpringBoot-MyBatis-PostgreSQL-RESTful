@@ -14,7 +14,7 @@ public interface mahasiswaMapper {
 	void add(Mahasiswa mahasiswa);
 	
 	@Update("Update mahasiswa SET nama=#{nama}, npm=#{npm}, id_univ=#{id_univ}, id_fakultas=#{id_fakultas}, id_program_studi="
-			+ "#{id_program_studi}  ")
+			+ "#{id_program_studi} where npm=#{npm}")
 	void update(Mahasiswa mahasiswa);
 	
 }

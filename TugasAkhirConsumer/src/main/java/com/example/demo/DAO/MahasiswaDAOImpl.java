@@ -1,21 +1,16 @@
 package com.example.demo.DAO;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
-import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import com.example.demo.Model.Fakultas;
 import com.example.demo.Model.Mahasiswa;
-import com.example.demo.Model.Universitas;
 import com.example.demo.Service.FakultasService;
 import com.example.demo.Service.MahasiswaService;
 
@@ -50,17 +45,10 @@ public class MahasiswaDAOImpl implements MahasiswaService, FakultasService {
 		return mahasiswa;
 	}
 	
-	
-
 	@Override
-	public void updateMahasiswa(Mahasiswa mahasiswa) {
+	public void update(Mahasiswa mahasiswa) {
 		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void deleteMahasiswa(Mahasiswa mahasiswa) {
-		// TODO Auto-generated method stub
+		mahasiswamapper.update(mahasiswa);
 		
 	}
 
@@ -90,28 +78,4 @@ public class MahasiswaDAOImpl implements MahasiswaService, FakultasService {
 		Map<String, Object> prodi = restTemplate.getForObject("https://apap2017-univ-apps.herokuapp.com/getProdi/" + id_univ + "/" + id_fakultas + "/" + id_prodi, Map.class);
 		return prodi;
 	}
-
-	@Override
-	public Map<String, Object> listUniv() {
-		// TODO Auto-generated method stub
-		
-//		ResponseEntity<List<Universitas>> responseEntity = restTemplate.exchange("https://apap2017-univ-apps.herokuapp.com/getUniversitasList", HttpMethod.GET, null, new ParameterizedTypeReference<List<Universitas>>() {
-//		});
-		//System.out.println("nana = " +responseEntity.toString());
-		Map<String, Object> universitas = restTemplate.getForObject("https://apap2017-univ-apps.herokuapp.com/getUniversitasList", Map.class);
-		return universitas;
-	}
-
-	@Override
-	public List<Fakultas> listFakultas(Integer id_univ) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Fakultas> listProdi(Integer id_univ, Integer id_fakultas) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 }
