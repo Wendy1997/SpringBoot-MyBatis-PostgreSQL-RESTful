@@ -20,7 +20,6 @@ public class IRSServiceDatabase implements IRSService {
     public IRS getIRS(String id_mahasiswa) {
         IRS irs = irsdao.selectIRS(id_mahasiswa);
         irs.setKelas_list(irsdao.selectKelas(irs.getId() + ""));
-        System.out.println(irs.toString());
         return irs;
     }
 

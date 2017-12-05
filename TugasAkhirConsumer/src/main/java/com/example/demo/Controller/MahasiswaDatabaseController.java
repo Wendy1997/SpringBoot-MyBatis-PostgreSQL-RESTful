@@ -21,9 +21,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
-import com.carrotsearch.ant.tasks.junit4.dependencies.com.google.common.reflect.TypeToken;
 import com.example.demo.Model.Fakultas;
 import com.example.demo.Model.Mahasiswa;
 import com.example.demo.Model.Universitas;
