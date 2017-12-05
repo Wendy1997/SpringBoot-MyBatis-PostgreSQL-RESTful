@@ -35,15 +35,9 @@ public class MahasiswaServiceRest implements MahasiswaService {
 	}
 
 	@Override
-	public void updateMahasiswa(Mahasiswa mahasiswa) {
+	public void update(Mahasiswa mahasiswa) {
 		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void deleteMahasiswa(Mahasiswa mahasiswa) {
-		// TODO Auto-generated method stub
-		
+		mahasiswaDAO.update(mahasiswa);
 	}
 
 	@Override

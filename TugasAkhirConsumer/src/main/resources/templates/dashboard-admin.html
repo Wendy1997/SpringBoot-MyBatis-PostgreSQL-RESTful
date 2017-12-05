@@ -59,42 +59,17 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr>
-                                                        <td>1. </td>
-                                                        <td>1506671234</td>
-                                                        <td>George Washington</td>
-                                                        <td>Ilmu Komputer</td>
-                                                        <td>Fakultas Ilmu Komputer</td>
+                                                    <tr th:each="mahasiswa,iterationStatus:${mahasiswa}">
+                                                        <td th:text="${iterationStatus.count}">1. </td>
+                                                        <td th:text="${mahasiswa.npm}">1506671234</td>
+                                                        <td th:text="${mahasiswa.nama}">George Washington</td>
+                                                        <td th:text="${mahasiswa.nama_prodi}">Ilmu Komputer</td>
+                                                        <td th:text="${mahasiswa.nama_fakultas}">Fakultas Ilmu Komputer</td>
                                                         <td>
                                                             <div class="row">
-                                                                <div class="col-md-6"><button class="btn btn-primary btn-round" type="button">Ubah</button></div>
-                                                                <div class="col-md-6"><button class="btn btn-danger btn-round" type="button">Hapus</button></div>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>2. </td>
-                                                        <td>1506671234</td>
-                                                        <td>Thomas Jefferson</td>
-                                                        <td>Ilmu Komputer</td>
-                                                        <td>Fakultas Ilmu Komputer</td>
-                                                        <td>
-                                                            <div class="row">
-                                                                <div class="col-md-6"><button class="btn btn-primary btn-round" type="button">Ubah</button></div>
-                                                                <div class="col-md-6"><button class="btn btn-danger btn-round" type="button">Hapus</button></div>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>3. </td>
-                                                        <td>1506671234</td>
-                                                        <td>John Adams</td>
-                                                        <td>Ilmu Komputer</td>
-                                                        <td>Fakultas Ilmu Komputer</td>
-                                                        <td>
-                                                            <div class="row">
-                                                                <div class="col-md-6"><button class="btn btn-primary btn-round" type="button">Ubah</button></div>
-                                                                <div class="col-md-6"><button class="btn btn-danger btn-round" type="button">Hapus</button></div>
+                                                                <div class="col-md-6">
+                                                                <a th:href="@{'/mahasiswa/update/' + ${mahasiswa.npm}}" class="btn btn-primary btn-round">Ubah</a>
+																	</div>
                                                             </div>
                                                         </td>
                                                     </tr>

@@ -1,6 +1,7 @@
 package com.example.demo.Controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,6 +17,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.example.demo.Model.Mahasiswa;
+import com.example.demo.Service.FakultasService;
 import com.example.demo.Service.MahasiswaService;
 
 @Controller
@@ -24,13 +26,33 @@ public class LoginController {
 	@Autowired
 	MahasiswaService mahasiswaDAO;
 	
+	@Autowired
+	FakultasService fakultasDAO;
+	
     @GetMapping("/mahasiswa/viewall")
     public String mahasiswaViewAll(Model model, ModelMap modelMap){
-    	modelMap.addAttribute("user", getPrincipal());
     	
-//    	List<Mahasiswa> viewall = mahasiswaDAO.selectAllMahasiswa();
-//    	model.addAttribute("mahasiswa", viewall);
-    		
+    	List<Mahasiswa> viewall = mahasiswaDAO.selectAllMahasiswa();
+		for(int i = 0; i < viewall.size(); i++) {
+			System.out.println(viewall.get(i).getId_univ() +" "+ viewall.get(i).getId_fakultas());
+			Map<String, Object> fakultas = fakultasDAO.namaFakultas(viewall.get(i).getId_univ(), viewall.get(i).getId_fakultas());
+			Map<String, Object> resultFakultas = (Map<String, Object>) fakultas.get("result");
+			Map<String, Object> namafakultas = (Map<String, Object>) resultFakultas.get("fakultas");
+			
+			String namaFakultas = namafakultas.get("nama_fakultas").toString();
+			System.out.println(namaFakultas);
+			viewall.get(i).setNama_fakultas(namaFakultas);
+			
+			Map<String, Object> prodi = fakultasDAO.namaProdi(viewall.get(i).getId_univ(), viewall.get(i).getId_fakultas(), viewall.get(i).getId_program_studi());
+	   	    Map<String, Object> resultProdi = (Map<String, Object>) prodi.get("result");
+			Map<String, Object> namaprodi = (Map<String, Object>) resultProdi.get("prodi");
+			
+			String namaProdi = namaprodi.get("nama_prodi").toString();
+			viewall.get(i).setNama_prodi(namaProdi);
+		}
+		
+		model.addAttribute("mahasiswa", viewall);
+    	modelMap.addAttribute("user", getPrincipal());    		
         return "dashboard-admin";
     }
     

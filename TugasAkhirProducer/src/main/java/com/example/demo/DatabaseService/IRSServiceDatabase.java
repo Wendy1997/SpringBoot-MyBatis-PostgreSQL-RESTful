@@ -1,32 +1,37 @@
 package com.example.demo.DatabaseService;
 
+import com.example.demo.DAO.IRSDAO;
 import com.example.demo.Model.IRS;
 import com.example.demo.Service.IRSService;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public class IRSServiceDatabase implements IRSService {
+
+    @Autowired
+    IRSDAO irsdao;
+
     @Override
-    public IRS getIRS(String id_mahasiswa, String id_term) {
-        return null;
+    public IRS getIRS(String id_mahasiswa) {
+        IRS irs = irsdao.selectIRS(id_mahasiswa);
+        irs.setKelas_list(irsdao.selectKelas(irs.getId() + ""));
+        System.out.println(irs.toString());
+        return irs;
     }
 
     @Override
     public List<IRS> getAllIRS(String id_mahasiswa) {
-        return null;
-    }
+        List<IRS> irsList = irsdao.selectAllIRS(id_mahasiswa);
 
-    @Override
-    public void addIRS(IRS irs, List<String> id_kelas) {
+        for(int i = 0 ; i < irsList.size(); i++){
+            irsList.get(i).setKelas_list(irsdao.selectKelas(irsList.get(i).getId() + ""));
+        }
 
-    }
-
-    @Override
-    public void updateIRS(IRS irs, List<String> id_kelas) {
-
+        return irsList;
     }
 }
