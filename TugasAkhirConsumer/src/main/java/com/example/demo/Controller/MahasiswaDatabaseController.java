@@ -39,7 +39,6 @@ public class MahasiswaDatabaseController {
 	
 	@Autowired
 	FakultasService fakultasDAO;
-
 	
     @GetMapping("/mahasiswa/view/{npm}")
     public String mahasiswaView(@PathVariable(value="npm") String npm, Model model){
