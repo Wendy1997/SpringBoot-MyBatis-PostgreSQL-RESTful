@@ -53,6 +53,11 @@ public class LoginController {
         }
         return "redirect:/login";
     }
+    
+    @GetMapping(value="/")
+    public String index () {
+        return "redirect:/login";
+    }
  
     private String getPrincipal(){
         String userName = null;
