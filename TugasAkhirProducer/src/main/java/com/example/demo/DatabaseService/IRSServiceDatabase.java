@@ -19,7 +19,8 @@ public class IRSServiceDatabase implements IRSService {
     @Override
     public IRS getIRS(String id_mahasiswa) {
         IRS irs = irsdao.selectIRS(id_mahasiswa);
-        irs.setKelas_list(irsdao.selectKelas(irs.getId() + ""));
+        if(irs != null)
+            irs.setKelas_list(irsdao.selectKelas(irs.getId() + ""));
         return irs;
     }
 

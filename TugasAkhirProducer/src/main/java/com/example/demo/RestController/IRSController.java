@@ -24,6 +24,7 @@ public class IRSController {
         Map<String, Object> responseJSON = new LinkedHashMap<>();
         try {
             IRS irs = irsService.getIRS(id);
+            System.out.println(irs);
             if(irs == null) {
                 responseJSON.put("status", HttpStatus.NOT_FOUND.value());
                 responseJSON.put("msg", "irs tidak ditemukan");
@@ -45,7 +46,8 @@ public class IRSController {
         Map<String, Object> responseJSON = new LinkedHashMap<>();
         try {
             List<IRS> irsList = irsService.getAllIRS(id);
-            if(irsList == null) {
+
+            if(irsList.size() == 0) {
                 responseJSON.put("status", HttpStatus.NOT_FOUND.value());
                 responseJSON.put("msg", "list irs tidak ditemukan");
             }else {
