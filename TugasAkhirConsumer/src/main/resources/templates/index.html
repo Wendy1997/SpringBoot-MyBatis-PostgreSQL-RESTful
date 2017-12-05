@@ -8,42 +8,37 @@
         <div class="container">
             <div class="col-md-4 content-center">
                 <div class="card card-login card-plain">
-                    <form class="form" method="" action="">
-                        <div class="header header-primary text-center">
-                            <div class="logo-container">
-                                <img src="/img/now-logo.png" alt="" />
-                            </div>
+                    <div class="header header-primary text-center">
+                        <div class="logo-container">
+                            <img src="../img/now-logo.png" alt="" />
                         </div>
-                        <div>
-                            <h3>Selamat datang di Sistem Informasi Akademik</h3>
-                        </div>
-
+                    </div>
+                    <div>
+                        <h3>Selamat datang di Sistem Informasi Akademik</h3>
+                    </div>
+                    <form th:method="post" th:action="@{/login}" class="form">
                         <div class="content">
-                            
                             <div class="input-group form-group-no-border input-lg">
                                 <span class="input-group-addon">
                                     <i class="now-ui-icons users_circle-08"></i>
                                 </span>
-                                <input type="text" class="form-control" placeholder="Username." />
+                                <input type="text" name="username" class="form-control" placeholder="Username..."/>
                             </div>
                             <div class="input-group form-group-no-border input-lg">
                                 <span class="input-group-addon">
                                     <i class="now-ui-icons text_caps-small"></i>
                                 </span>
-                                <input type="password" placeholder="Password." class="form-control" />
+                                <input type="password" name="password" placeholder="Password..." class="form-control"/>
                             </div>
                         </div>
                         <div class="footer text-center">
-                            <a href="#pablo" class="btn btn-primary btn-round btn-lg btn-block">LOGIN</a>
+                            <input class="btn btn-primary btn-round btn-lg btn-block" type="submit" value="LOGIN" />
+                            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
-<<<<<<< HEAD
-
-=======
->>>>>>> login
         <div th:replace="fragment :: footer"></div>
     </div>
 </body>
