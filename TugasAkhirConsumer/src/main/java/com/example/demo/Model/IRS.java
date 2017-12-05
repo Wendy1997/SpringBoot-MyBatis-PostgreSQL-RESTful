@@ -11,8 +11,8 @@ import java.util.List;
 @AllArgsConstructor
 public class IRS {
     int id;
-    int idMahasiswa;
-    boolean isDisetujui;
-    String term;
-    List<Kelas> kelasList;
+    int id_mahasiswa;
+    boolean is_disetujui;
+    String id_term;
+    List<String> kelas_list;
 }

@@ -8,7 +8,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ProgramStudi {
-    int id;
-    int idFakultas;
-    String namaProdi;
+    int id_univ;
+    int id_fakultas;
+    int id_prodi;
+    String nama_prodi;
 }

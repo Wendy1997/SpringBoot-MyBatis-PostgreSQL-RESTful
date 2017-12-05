@@ -12,8 +12,11 @@ import java.util.List;
 public class Mahasiswa {
     int id;
     String nama;
-    long npm;
-    boolean is_dapat_lulus;
+    String npm;
+    int sks_total;
+    Integer id_fakultas;
+    Integer id_univ;
+    Boolean is_dapat_lulus;
     double ip;
     double ipk;
     int id_program_studi;
