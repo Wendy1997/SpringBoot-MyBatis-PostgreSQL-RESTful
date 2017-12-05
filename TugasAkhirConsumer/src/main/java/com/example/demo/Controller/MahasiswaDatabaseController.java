@@ -103,7 +103,7 @@ public class MahasiswaDatabaseController {
     
     @GetMapping("/mahasiswa/add/fakultas")
     public void mahasiswaAddFakultas(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        List<Fakultas> fakultas = kurikulumService.getFakultasList(Integer.parseInt(request.getParameter("namafakultas")));
+        List<Fakultas> fakultas = kurikulumService.getFakultasList(request.getParameter("namafakultas"));
 
         Gson gson = new Gson();
         String hasil = gson.toJson(fakultas);
@@ -115,7 +115,7 @@ public class MahasiswaDatabaseController {
     @GetMapping("/mahasiswa/add/prodi")
     public void mahasiswaAddprodi(HttpServletRequest request, HttpServletResponse response) throws IOException {
     		
-        List<ProgramStudi> prodi = kurikulumService.getProdiList(Integer.parseInt(request.getParameter("namafakultas")), Integer.parseInt(request.getParameter("namaprodi")));
+        List<ProgramStudi> prodi = kurikulumService.getProdiList(request.getParameter("namafakultas"), request.getParameter("namaprodi"));
 
         Gson gson = new Gson();
         String hasil = gson.toJson(prodi);
@@ -127,7 +127,7 @@ public class MahasiswaDatabaseController {
     @GetMapping("/mahasiswa/update/fakultas")
     public void mahasiswaUpdateFakultas(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
-        List<Fakultas> fakultas = kurikulumService.getFakultasList(Integer.parseInt(request.getParameter("namafakultas")));
+        List<Fakultas> fakultas = kurikulumService.getFakultasList(request.getParameter("namafakultas"));
 
         Gson gson = new Gson();
         String hasil = gson.toJson(fakultas);
@@ -139,7 +139,7 @@ public class MahasiswaDatabaseController {
     @GetMapping("/mahasiswa/update/prodi")
     public void mahasiswaUpdateprodi(HttpServletRequest request, HttpServletResponse response) throws IOException {
     		
-    	List<ProgramStudi> prodi = kurikulumService.getProdiList(Integer.parseInt(request.getParameter("namafakultas")), Integer.parseInt(request.getParameter("namaprodi")));
+    	List<ProgramStudi> prodi = kurikulumService.getProdiList(request.getParameter("namafakultas"), request.getParameter("namaprodi"));
 
         Gson gson = new Gson();
         String hasil = gson.toJson(prodi);

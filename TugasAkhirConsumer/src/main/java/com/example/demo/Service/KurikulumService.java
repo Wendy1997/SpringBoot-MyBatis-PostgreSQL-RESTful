@@ -12,11 +12,11 @@ import java.util.List;
 public interface KurikulumService {
 
     List<Universitas> getUniversitasList();
-    Universitas getUniversitas(Integer id_univ);
+    Universitas getUniversitas(String id_univ);
 
-    List<Fakultas> getFakultasList(Integer id_univ);
-    Fakultas getFakultas(Integer id_univ, Integer id_fakultas);
+    List<Fakultas> getFakultasList(String id_univ);
+    Fakultas getFakultas(String id_univ, String id_fakultas);
 
-    List<ProgramStudi> getProdiList(Integer id_univ, Integer id_fakultas);
-    ProgramStudi getProdi(Integer id_univ, Integer id_fakultas, Integer id_prodi);
+    List<ProgramStudi> getProdiList(String id_univ, String id_fakultas);
+    ProgramStudi getProdi(String id_univ, String id_fakultas, String id_prodi);
 }
