@@ -8,8 +8,14 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Nilai {
-    int idMahasiswa;
-    int idMataKuliah;
-    char nilaiHuruf;
+    String idMahasiswa;
+    String idMataKuliah;
     double nilaiAngka;
+    char nilaiHuruf;
+
+    public Nilai(String idMahasiswa, String idMataKuliah, double nilaiAngka){
+        this.idMahasiswa = idMahasiswa;
+        this.idMataKuliah = idMataKuliah;
+        this.nilaiAngka = nilaiAngka;
+    }
 }

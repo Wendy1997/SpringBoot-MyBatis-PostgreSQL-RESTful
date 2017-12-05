@@ -7,15 +7,10 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Kelas {
+public class Term {
     int id;
-    String kode_mk;
-    String nama_kelas;
     int nomor_term;
-    int sks;
-    int periode_start;
-    int periode_end;
-    String jadwal;
-    String ruangan;
-    String dosen;
+    String start_date;
+    String end_date;
+    String add_irs_date;
 }
