@@ -1,6 +1,5 @@
 package com.example.demo.Controller;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -12,17 +11,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.example.demo.Service.KurikulumService;
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;
-import org.json.JSONArray;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import com.example.demo.Model.Fakultas;
 import com.example.demo.Model.Mahasiswa;
@@ -52,26 +45,26 @@ public class MahasiswaDatabaseController {
     		Map<String, Object> universitas = fakultasDAO.namaUniv(view.getId_univ());
     		Map<String, Object> resultUniversitas = (Map<String, Object>) universitas.get("result");
     		Map<String, Object> namauniversitas = (Map<String, Object>) resultUniversitas.get("universitas");
-    		
+
     		String namaUniversitas = namauniversitas.get("nama_univ").toString();
     		model.addAttribute("universitas", namaUniversitas);
-    		
+
     		Map<String, Object> fakultas = fakultasDAO.namaFakultas(view.getId_univ(), view.getId_fakultas());
     		Map<String, Object> resultFakultas = (Map<String, Object>) fakultas.get("result");
     		Map<String, Object> namafakultas = (Map<String, Object>) resultFakultas.get("fakultas");
     		System.out.println(resultFakultas.get("fakultas"));
-    		
+
     		String namaFakultas = namafakultas.get("nama_fakultas").toString();
     		model.addAttribute("fakultas", namaFakultas);
-    		
+
 
     		Map<String, Object> prodi = fakultasDAO.namaProdi(view.getId_univ(), view.getId_fakultas(), view.getId_program_studi());
        	    Map<String, Object> resultProdi = (Map<String, Object>) prodi.get("result");
     		Map<String, Object> namaprodi = (Map<String, Object>) resultProdi.get("prodi");
-    		
+
     		String namaProdi = namaprodi.get("nama_prodi").toString();
     		model.addAttribute("prodi", namaProdi);
-    		
+
     		model.addAttribute("mahasiswa", view);
         return "lihat-mahasiswa";
     }
@@ -103,94 +96,54 @@ public class MahasiswaDatabaseController {
 
     @GetMapping("/mahasiswa/add")
     public String mahasiswaAdd(@RequestParam(value = "id_univ", required = false) Integer id_univ, Model model){
-
     List<Universitas> listUniv = kurikulumService.getUniversitasList();
     model.addAttribute("univ", listUniv);
-        return "tambah-mahasiswa";
+    return "tambah-mahasiswa";
     }
     
-    @PostMapping("/mahasiswa/add/fakultas")
+    @GetMapping("/mahasiswa/add/fakultas")
     public void mahasiswaAddFakultas(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    		
-    List<Fakultas> fakultas = kurikulumService.getFakultasList(Integer.parseInt(request.getParameter("namafakultas")));
-    
-<<<<<<< HEAD
-    Gson gson = new Gson();
-    String hasil = gson.toJson(fakultas);
-    
-    PrintWriter out = response.getWriter();
-    out.println(hasil);
+        List<Fakultas> fakultas = kurikulumService.getFakultasList(Integer.parseInt(request.getParameter("namafakultas")));
+
+        Gson gson = new Gson();
+        String hasil = gson.toJson(fakultas);
+
+        PrintWriter out = response.getWriter();
+        out.println(hasil);
     }
     
-    @PostMapping("/mahasiswa/add/prodi")
+    @GetMapping("/mahasiswa/add/prodi")
     public void mahasiswaAddprodi(HttpServletRequest request, HttpServletResponse response) throws IOException {
     		
-    List<ProgramStudi> prodi = kurikulumService.getProdiList(Integer.parseInt(request.getParameter("namafakultas")), Integer.parseInt(request.getParameter("namaprodi")));
-    
-    Gson gson = new Gson();
-    String hasil = gson.toJson(prodi);
-    
-    PrintWriter out = response.getWriter();
-    out.println(hasil);
+        List<ProgramStudi> prodi = kurikulumService.getProdiList(Integer.parseInt(request.getParameter("namafakultas")), Integer.parseInt(request.getParameter("namaprodi")));
+
+        Gson gson = new Gson();
+        String hasil = gson.toJson(prodi);
+
+        PrintWriter out = response.getWriter();
+        out.println(hasil);
     }
 
-    @PostMapping("/mahasiswa/update/fakultas")
+    @GetMapping("/mahasiswa/update/fakultas")
     public void mahasiswaUpdateFakultas(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    		
-    List<Fakultas> fakultas = kurikulumService.getFakultasList(Integer.parseInt(request.getParameter("namafakultas")));
-    
-=======
->>>>>>> login
-    Gson gson = new Gson();
-    String hasil = gson.toJson(fakultas);
-    
-    PrintWriter out = response.getWriter();
-    out.println(hasil);
-<<<<<<< HEAD
-=======
-    }
-    
-    @PostMapping("/mahasiswa/add/prodi")
-    public void mahasiswaAddprodi(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    		
-    List<ProgramStudi> prodi = kurikulumService.getProdiList(Integer.parseInt(request.getParameter("namafakultas")), Integer.parseInt(request.getParameter("namaprodi")));
-    
-    Gson gson = new Gson();
-    String hasil = gson.toJson(prodi);
-    
-    PrintWriter out = response.getWriter();
-    out.println(hasil);
-    }
 
-    @PostMapping("/mahasiswa/update/fakultas")
-    public void mahasiswaUpdateFakultas(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    		
-	    List<Fakultas> fakultas = kurikulumService.getFakultasList(Integer.parseInt(request.getParameter("namafakultas")));
-	    
-	    Gson gson = new Gson();
-	    String hasil = gson.toJson(fakultas);
-	    
-	    PrintWriter out = response.getWriter();
-	    out.println(hasil);
+        List<Fakultas> fakultas = kurikulumService.getFakultasList(Integer.parseInt(request.getParameter("namafakultas")));
+
+        Gson gson = new Gson();
+        String hasil = gson.toJson(fakultas);
+
+        PrintWriter out = response.getWriter();
+        out.println(hasil);
     }
->>>>>>> login
     
-    
-    @PostMapping("/mahasiswa/update/prodi")
+    @GetMapping("/mahasiswa/update/prodi")
     public void mahasiswaUpdateprodi(HttpServletRequest request, HttpServletResponse response) throws IOException {
     		
     	List<ProgramStudi> prodi = kurikulumService.getProdiList(Integer.parseInt(request.getParameter("namafakultas")), Integer.parseInt(request.getParameter("namaprodi")));
-<<<<<<< HEAD
-        
+
         Gson gson = new Gson();
         String hasil = gson.toJson(prodi);
         
-=======
-        
-        Gson gson = new Gson();
-        String hasil = gson.toJson(prodi);
-        
->>>>>>> login
         PrintWriter out = response.getWriter();
         out.println(hasil);
     }

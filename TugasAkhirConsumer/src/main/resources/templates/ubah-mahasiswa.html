@@ -105,11 +105,11 @@
 <div th:replace="fragment :: javascript"></div>
 <script type="text/javascript">
 	$(document).ready(function(){
-		sendAjax();
+		// sendAjax();
 		$('select[name="id_univ"]').change(function() {
 			var id = $(this).val();
 			$.ajax({
-				type:'POST',
+				type:'GET',
 				url : "/mahasiswa/update/fakultas",
 				dataType: "html",
 				data: {
@@ -133,7 +133,7 @@
 			var id_univ = $('#univ').val();
 			var id_fakultas = $(this).val();
 			$.ajax({
-				type:'POST',
+				type:'GET',
 				url : "/mahasiswa/update/prodi",
 				dataType: "html",
 				data: {
@@ -156,7 +156,7 @@
 	function sendAjax(){
 		var id = $("#univ").val();
 		$.ajax({
-			type:'POST',
+			type:'GET',
 			url : "/mahasiswa/update/fakultas",
 			dataType: "html",
 			data: {
@@ -173,7 +173,9 @@
 	            		}
 	             }
 	            document.getElementById('fakultas').innerHTML = html;
-	            getProdi();
+
+                var html = '<option value="">--Pilih Prodi</option>';
+                document.getElementById('prodi').innerHTML = html;
 			}
 		})
 	}
@@ -181,7 +183,7 @@
 		var id_univ = $('#univ').val();
 		var id_fakultas = $('#fakultas').val();
 		$.ajax({
-			type:'POST',
+			type:'GET',
 			url : "/mahasiswa/update/prodi",
 			dataType: "html",
 			data: {

@@ -115,7 +115,7 @@
 														<div class="form-group">
 															<label>Fakultas</label> <select class="form-control"
 																name="id_fakultas" id="fakultas">
-																<option value="">--Pilih fakultas</option>
+																<option value="">--Pilih Fakultas</option>
 
 															</select>
 														</div>
@@ -154,29 +154,31 @@
 		$('select[name="id_univ"]').change(function() {
 			var id = $(this).val();
 			$.ajax({
-				type:'POST',
+				type:'GET',
 				url : "/mahasiswa/add/fakultas",
 				dataType: "html",
 				data: {
 					namafakultas: id
 				},
 				success: function(response) {
-					var obj = JSON.parse(response);
-					var html = '<option value="">--Pilih fakultas</option>';
+				    var obj = JSON.parse(response);
+					var html = '<option value="">--Pilih Fakultas</option>';
 		            for(var i in obj ){
 		                 html += '<option value="' + obj[i].id_fakultas + '">' + obj[i].nama_fakultas + '</option>';
-		                 console.log(html);
 		             }
 		            document.getElementById('fakultas').innerHTML = html;
-				}
+
+                    var html = '<option value="">--Pilih Prodi</option>';
+                    document.getElementById('prodi').innerHTML = html;
+                }
 			})
 		});
+
 		$('select[name="id_fakultas"]').change(function() {
 			var id_univ = $('#fakultas').val();
 			var id_fakultas = $(this).val();
-			console.log($(this).val());
 			$.ajax({
-				type:'POST',
+				type:'GET',
 				url : "/mahasiswa/add/prodi",
 				dataType: "html",
 				data: {
@@ -188,7 +190,6 @@
 					var html = '<option value="">--Pilih Prodi</option>';
 		            for(var i in obj ){
 		                 html += '<option value="' + obj[i].id_prodi + '">' + obj[i].nama_prodi + '</option>';
-		                 console.log(html);
 		             }
 		            document.getElementById('prodi').innerHTML = html;
 				}

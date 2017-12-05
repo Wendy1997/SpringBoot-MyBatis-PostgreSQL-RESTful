@@ -34,13 +34,13 @@ public class LoginController {
     	
     	List<Mahasiswa> viewall = mahasiswaDAO.selectAllMahasiswa();
 		for(int i = 0; i < viewall.size(); i++) {
-			System.out.println(viewall.get(i).getId_univ() +" "+ viewall.get(i).getId_fakultas());
+//			System.out.println(viewall.get(i).getId_univ() +" "+ viewall.get(i).getId_fakultas());
 			Map<String, Object> fakultas = fakultasDAO.namaFakultas(viewall.get(i).getId_univ(), viewall.get(i).getId_fakultas());
 			Map<String, Object> resultFakultas = (Map<String, Object>) fakultas.get("result");
 			Map<String, Object> namafakultas = (Map<String, Object>) resultFakultas.get("fakultas");
 			
 			String namaFakultas = namafakultas.get("nama_fakultas").toString();
-			System.out.println(namaFakultas);
+//			System.out.println(namaFakultas);
 			viewall.get(i).setNama_fakultas(namaFakultas);
 			
 			Map<String, Object> prodi = fakultasDAO.namaProdi(viewall.get(i).getId_univ(), viewall.get(i).getId_fakultas(), viewall.get(i).getId_program_studi());
