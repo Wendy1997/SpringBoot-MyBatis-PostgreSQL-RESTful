@@ -57,7 +57,7 @@
 													<div class="col-md-12">
 														<div class="form-group">
 															<label>Universitas</label> <select class="form-control"
-																name="id_univ" id="univ">
+																name="id_univ" id="univ" th:value="${data.id_univ}">
 																<option value="-1">--Pilih Universitas</option>
 																<option th:each="univ : ${univ}"
 																	th:value="${univ.id_univ}" th:text="${univ.nama_univ}"
@@ -69,7 +69,7 @@
 													<div class="col-md-12">
 														<div class="form-group">
 															<label>Fakultas</label> <select class="form-control"
-																name="id_fakultas" id="fakultas">
+																name="id_fakultas" id="fakultas" th:value="${data.id_fakultas}">
 																<option value="-1">--Pilih fakultas</option>
 															</select>
 														</div>
@@ -77,7 +77,7 @@
 													<div class="col-md-12">
 														<div class="form-group">
 															<label>Program Studi</label> <select class="form-control"
-																name="id_program_studi" id="prodi">
+																name="id_program_studi" id="prodi" th:value="${data.id_program_studi}">
 																<option value="-1">--Pilih Prodi</option>
 															</select>
 														</div>
@@ -103,9 +103,9 @@
 	</div>
 </body>
 <div th:replace="fragment :: javascript"></div>
-<script type="text/javascript">
+<script type="text/javascript" th:inline="javascript">
 	$(document).ready(function(){
-		// sendAjax();
+        sendAjax();
 		$('select[name="id_univ"]').change(function() {
 			var id = $(this).val();
 			$.ajax({
@@ -119,11 +119,7 @@
 					var obj = JSON.parse(response);
 					var html = '<option value="">--Pilih fakultas</option>';
 		            for(var i in obj ){
-		            		if(id == obj[i].id_fakultas) {
-		                 html += '<option selected ="selected" value="' + obj[i].id_fakultas + '">' + obj[i].nama_fakultas + '</option>';
-		            		} else {
-		            			 html += '<option value="' + obj[i].id_fakultas + '">' + obj[i].nama_fakultas + '</option>'
-		            		}
+                         html += '<option value="' + obj[i].id_fakultas + '">' + obj[i].nama_fakultas + '</option>'
 		             }
 		            document.getElementById('fakultas').innerHTML = html;
 				}
@@ -155,9 +151,10 @@
 	
 	function sendAjax(){
 		var id = $("#univ").val();
-		$.ajax({
+        var fakultas = [[${data.id_fakultas}]];
+        $.ajax({
 			type:'GET',
-			url : "/mahasiswa/update/fakultas",
+			url : "/mahasiswa/add/fakultas",
 			dataType: "html",
 			data: {
 				namafakultas: id
@@ -166,22 +163,25 @@
 				var obj = JSON.parse(response);
 				var html = '<option value="">--Pilih fakultas</option>';
 	            for(var i in obj ){
-	            		if(id == obj[i].id_fakultas) {
-	                 html += '<option selected ="selected" value="' + obj[i].id_fakultas + '">' + obj[i].nama_fakultas + '</option>';
+	                console.log(fakultas + " " + obj[i].id_fakultas)
+	            		if(fakultas == obj[i].id_fakultas) {
+	                        html += '<option selected ="selected" value="' + obj[i].id_fakultas + '">' + obj[i].nama_fakultas + '</option>';
 	            		} else {
-	            			 html += '<option value="' + obj[i].id_fakultas + '">' + obj[i].nama_fakultas + '</option>'
+                            html += '<option value="' + obj[i].id_fakultas + '">' + obj[i].nama_fakultas + '</option>'
 	            		}
 	             }
 	            document.getElementById('fakultas').innerHTML = html;
 
                 var html = '<option value="">--Pilih Prodi</option>';
                 document.getElementById('prodi').innerHTML = html;
+                getProdi()
 			}
 		})
 	}
 	function getProdi(){
 		var id_univ = $('#univ').val();
 		var id_fakultas = $('#fakultas').val();
+        var prodi = [[${data.id_program_studi}]];
 		$.ajax({
 			type:'GET',
 			url : "/mahasiswa/update/prodi",
@@ -194,7 +194,7 @@
 				var obj = JSON.parse(response);
 				var html = '<option value="">--Pilih Prodi</option>';
 	            for(var i in obj ){
-	            		if(id_fakultas == obj[i].id_prodi) {
+	            		if(prodi == obj[i].id_prodi) {
 	            			console.log("hahah")
 	                 html += '<option selected ="selected" value="' + obj[i].id_prodi + '">' + obj[i].nama_prodi + '</option>';
 	            		} else {
