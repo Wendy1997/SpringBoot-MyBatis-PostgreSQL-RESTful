@@ -39,7 +39,7 @@
 														<div class="form-group">
 															<label>Nama Lengkap</label> <input type="text" value=""
 																th:field="${data.nama}" placeholder="Nama"
-																class="form-control" />
+																class="form-control"  required="true"/>
 														</div>
 													</div>
 													<input name="is_dapat_lulus" type="hidden"
@@ -51,15 +51,15 @@
 														<div class="form-group">
 															<label>NPM</label> <input type="text" value=""
 																th:field="${data.npm}" placeholder="NPM"
-																class="form-control" />
+																class="form-control"  required="true"/>
 														</div>
 													</div>
 													<div class="col-md-12">
 														<div class="form-group">
 															<label>Universitas</label> <select class="form-control"
-																name="id_univ" id="univ" th:value="${data.id_univ}">
+															name="id_univ" id="univ" required="true" >
 																<option value="-1">--Pilih Universitas</option>
-																<option th:each="univ : ${univ}"
+																<option th:each="univ : ${univ}" 
 																	th:value="${univ.id_univ}" th:text="${univ.nama_univ}"
 																	th:selected="${data.id_univ == univ.id_univ}"
 																	></option>
@@ -69,7 +69,7 @@
 													<div class="col-md-12">
 														<div class="form-group">
 															<label>Fakultas</label> <select class="form-control"
-																name="id_fakultas" id="fakultas" th:value="${data.id_fakultas}">
+																name="id_fakultas" id="fakultas" required="true">
 																<option value="-1">--Pilih fakultas</option>
 															</select>
 														</div>
@@ -77,7 +77,7 @@
 													<div class="col-md-12">
 														<div class="form-group">
 															<label>Program Studi</label> <select class="form-control"
-																name="id_program_studi" id="prodi" th:value="${data.id_program_studi}">
+																name="id_program_studi" id="prodi" required="true">
 																<option value="-1">--Pilih Prodi</option>
 															</select>
 														</div>
