@@ -36,7 +36,7 @@ public class IRSController {
         return "isi-irs";
     }
 
-    @PostMapping("/irs/add")
+    @GetMapping("/irs/add/submit")
     public void irsAddSubmit(HttpServletRequest request, HttpServletResponse response) throws IOException{
         IRS irs = new IRS();
         irs.set_disetujui(false);
@@ -75,7 +75,7 @@ public class IRSController {
         return "ubah-irs";
     }
 
-    @PostMapping("/irs/update")
+    @GetMapping("/irs/update/submit")
     public void irsUpdateSubmit(HttpServletRequest request, HttpServletResponse response) throws IOException{
         IRS irs = new IRS();
         irs.set_disetujui(false);

@@ -165,8 +165,8 @@
            var id_term = $('#id_term').val();
 
            $.ajax({
-               type: 'POST',
-               url: "/irs/add",
+               type: 'GET',
+               url: "/irs/add/submit",
                dataType: "html",
                data: {
                    irs_list: submit.toString(),
