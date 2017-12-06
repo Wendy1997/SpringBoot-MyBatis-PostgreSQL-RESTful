@@ -182,5 +182,4 @@ public class MataKuliahServiceRest implements MataKuliahService {
         return kurikulumList;
     }
 
-
 }

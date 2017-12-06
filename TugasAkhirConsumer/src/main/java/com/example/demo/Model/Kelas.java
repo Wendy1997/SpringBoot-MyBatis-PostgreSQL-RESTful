@@ -18,4 +18,5 @@ public class Kelas {
     String jadwal;
     String ruangan;
     String dosen;
+
 }

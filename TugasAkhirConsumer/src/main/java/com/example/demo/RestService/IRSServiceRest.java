@@ -97,7 +97,7 @@ public class IRSServiceRest implements IRSService {
         String id_irs = irsdao.selectIRS(irs.getId_mahasiswa() + "").getId() + "";
 
         for(int i = 0 ; i < irs.getKelas_list().size(); i++){
-            irsdao.addIrsKelas(id_irs, irs.getKelas_list().get(i));
+            irsdao.addIrsKelas(id_irs, irs.getKelas_list().get(i).getNamaKelas());
         }
     }
 
@@ -109,7 +109,7 @@ public class IRSServiceRest implements IRSService {
 
         for(int i = 0 ; i < irs.getKelas_list().size(); i++){
             System.out.println(id_irs + " " + irs.getKelas_list().get(i));
-            irsdao.addIrsKelas(id_irs, irs.getKelas_list().get(i));
+            irsdao.addIrsKelas(id_irs, irs.getKelas_list().get(i).getNamaKelas());
         }
     }
 }
