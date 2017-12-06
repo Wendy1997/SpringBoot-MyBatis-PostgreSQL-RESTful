@@ -1,6 +1,7 @@
 package com.example.demo.Controller;
 
 import com.example.demo.Model.IRS;
+import com.example.demo.Model.Kelas;
 import com.example.demo.Service.IRSService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,7 +25,8 @@ public class IRSController {
     IRSService irsService;
 
     @GetMapping("/irs/view/{id}")
-    public String irsView(@PathVariable(value="id") String id){
+    public String irsView(@PathVariable(value="id") String id, Model model){
+    	model.addAttribute("idMahasiswa", id);
         return "lihat-irs";
     }
 
@@ -33,6 +35,7 @@ public class IRSController {
 
         model.addAttribute("id_mahasiswa", "1");
         model.addAttribute("id_term", "6");
+        model.addAttribute("idMahasiswa", "1");
         return "isi-irs";
     }
 
@@ -44,9 +47,9 @@ public class IRSController {
         irs.setId_term(request.getParameter("id_term"));
 
         String[] irs_list = request.getParameter("irs_list").split(",");
-        List<String> kelas_list = new ArrayList<>();
+        List<Kelas> kelas_list = new ArrayList<>();
         for(String kelas : irs_list){
-            kelas_list.add(kelas);
+            kelas_list.add(new Kelas(Integer.parseInt(kelas)));
         }
 
         irs.setKelas_list(kelas_list);
@@ -72,6 +75,7 @@ public class IRSController {
 
         model.addAttribute("irs", irs);
         model.addAttribute("kelas", kelas);
+        model.addAttribute("idMahasiswa", id);
         return "ubah-irs";
     }
 
@@ -83,9 +87,9 @@ public class IRSController {
         irs.setId_term(request.getParameter("id_term"));
 
         String[] irs_list = request.getParameter("irs_list").split(",");
-        List<String> kelas_list = new ArrayList<>();
+        List<Kelas> kelas_list = new ArrayList<>();
         for(String kelas : irs_list){
-            kelas_list.add(kelas);
+            kelas_list.add(new Kelas(Integer.parseInt(kelas)));
         }
 
         irs.setKelas_list(kelas_list);

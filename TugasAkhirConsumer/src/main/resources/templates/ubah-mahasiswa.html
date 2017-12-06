@@ -105,11 +105,7 @@
 <div th:replace="fragment :: javascript"></div>
 <script type="text/javascript" th:inline="javascript">
 	$(document).ready(function(){
-<<<<<<< HEAD
-        sendAjax();
-=======
 		// sendAjax();
->>>>>>> login
 		$('select[name="id_univ"]').change(function() {
 			var id = $(this).val();
 			$.ajax({
@@ -155,16 +151,9 @@
 	
 	function sendAjax(){
 		var id = $("#univ").val();
-<<<<<<< HEAD
-        var fakultas = [[${data.id_fakultas}]];
-        $.ajax({
-			type:'GET',
-			url : "/mahasiswa/add/fakultas",
-=======
 		$.ajax({
 			type:'GET',
 			url : "/mahasiswa/update/fakultas",
->>>>>>> login
 			dataType: "html",
 			data: {
 				namafakultas: id
@@ -184,10 +173,6 @@
 
                 var html = '<option value="">--Pilih Prodi</option>';
                 document.getElementById('prodi').innerHTML = html;
-<<<<<<< HEAD
-                getProdi()
-=======
->>>>>>> login
 			}
 		})
 	}

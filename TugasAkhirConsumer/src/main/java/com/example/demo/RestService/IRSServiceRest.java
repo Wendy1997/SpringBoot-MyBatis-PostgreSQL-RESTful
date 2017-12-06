@@ -38,10 +38,9 @@ public class IRSServiceRest implements IRSService {
                 JSONObject jsonProdi = jsonResult.getJSONObject("result");
 
                 JSONArray jsonKelas = jsonProdi.getJSONArray("kelas_list");
-                List<String> kelasList= new ArrayList<>();
-                System.out.println(jsonKelas.get(1).toString());
+                List<Kelas> kelasList= new ArrayList<>();
                 for(int j = 0; j < jsonKelas.length(); j++){
-                    kelasList.add((String)jsonKelas.get(j));
+                    kelasList.add(new Kelas(Integer.parseInt((String)jsonKelas.get(j))));
                 }
 
                 irs = new IRS(
@@ -70,10 +69,10 @@ public class IRSServiceRest implements IRSService {
                 for(int i = 0; i < jsonProdi.length(); i++){
 
                     JSONArray jsonKelas = jsonProdi.getJSONObject(i).getJSONArray("kelas_list");
-                    List<String> kelasList= new ArrayList<>();
+                    List<Kelas> kelasList= new ArrayList<>();
 
                     for(int j = 0; j < jsonKelas.length(); j++){
-                        kelasList.add((String)jsonKelas.get(j));
+                        kelasList.add(new Kelas(Integer.parseInt((String)jsonKelas.get(j))));
                     }
 
                     irsList.add(new IRS(
@@ -97,7 +96,7 @@ public class IRSServiceRest implements IRSService {
         String id_irs = irsdao.selectIRS(irs.getId_mahasiswa() + "").getId() + "";
 
         for(int i = 0 ; i < irs.getKelas_list().size(); i++){
-            irsdao.addIrsKelas(id_irs, irs.getKelas_list().get(i));
+            irsdao.addIrsKelas(id_irs, irs.getKelas_list().get(i).getId() + "");
         }
     }
 
@@ -109,7 +108,7 @@ public class IRSServiceRest implements IRSService {
 
         for(int i = 0 ; i < irs.getKelas_list().size(); i++){
             System.out.println(id_irs + " " + irs.getKelas_list().get(i));
-            irsdao.addIrsKelas(id_irs, irs.getKelas_list().get(i));
+            irsdao.addIrsKelas(id_irs, irs.getKelas_list().get(i).getId() + "");
         }
     }
 }
