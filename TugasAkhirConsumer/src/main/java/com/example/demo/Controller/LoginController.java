@@ -58,7 +58,26 @@ public class LoginController {
     
 	@GetMapping(value = "/mahasiswa")
     public String mahasiswaDashboard(ModelMap model) {
+        Mahasiswa mahasiswa = mahasiswaDAO.view(mahasiswaDAO.getId(getPrincipal()));
+		
+        System.out.println(mahasiswa);
+		
+        Map<String, Object> fakultas = fakultasDAO.namaFakultas(mahasiswa.getId_univ(), mahasiswa.getId_fakultas());
+		Map<String, Object> resultFakultas = (Map<String, Object>) fakultas.get("result");
+		Map<String, Object> namafakultas = (Map<String, Object>) resultFakultas.get("fakultas");
+		
+		String namaFakultas = namafakultas.get("nama_fakultas").toString();
+		mahasiswa.setNama_fakultas(namaFakultas);
+		
+		Map<String, Object> prodi = fakultasDAO.namaProdi(mahasiswa.getId_univ(), mahasiswa.getId_fakultas(), mahasiswa.getId_program_studi());
+   	    Map<String, Object> resultProdi = (Map<String, Object>) prodi.get("result");
+		Map<String, Object> namaprodi = (Map<String, Object>) resultProdi.get("prodi");
+		
+		String namaProdi = namaprodi.get("nama_prodi").toString();
+		mahasiswa.setNama_prodi(namaProdi);
+		
         model.addAttribute("user", getPrincipal());
+		model.addAttribute(mahasiswa);
         return "dashboard-mahasiswa";
     }
  

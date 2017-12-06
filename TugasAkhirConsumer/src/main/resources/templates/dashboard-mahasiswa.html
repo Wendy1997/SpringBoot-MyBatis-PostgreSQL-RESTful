@@ -13,8 +13,8 @@
                     <div class="photo-container">
                         <img src="/img/ryan.jpg" alt="" />
                     </div>
-                    <h3 class="title">Wendy Damar Wisma Trisna Bayu</h3>
-                    <p class="category">1506737823</p>
+                    <h3 class="title" th:text="${mahasiswa.nama}">Wendy Damar Wisma Trisna Bayu</h3>
+                    <p class="category" th:text="${mahasiswa.npm}">1506737823</p>
                 </div>
             </div>
         </div>
@@ -32,10 +32,10 @@
                                 <div class="card-body">
                                     <!-- Tab panes -->
                                     <div class="tab-content">
-                                            <p>Nama : Wendy Damar Wisma Trisna Bayu</p>
-                                            <p>NPM : 1506737823</p>
-                                            <p>Fakultas : Ilmu Komputer</p>
-                                            <p>Jurusan : Sistem Informasi</p>
+                                            <p th:text="${mahasiswa.nama}">Nama : Wendy Damar Wisma Trisna Bayu</p>
+                                            <p th:text="${mahasiswa.npm}">NPM : 1506737823</p>
+                                            <p th:text="${mahasiswa.nama_fakultas}">Fakultas : Ilmu Komputer</p>
+                                            <p th:text="${mahasiswa.nama_prodi}">Jurusan : Sistem Informasi</p>
                                     </div>
                                 </div>
                             </div>

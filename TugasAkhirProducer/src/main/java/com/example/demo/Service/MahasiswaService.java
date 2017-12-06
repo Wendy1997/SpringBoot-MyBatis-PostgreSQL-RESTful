@@ -12,6 +12,7 @@ public interface MahasiswaService {
 	List<Mahasiswa> selectAllMahasiswa ();
 	void addMahasiswa (Mahasiswa mahasiswa);
 	Mahasiswa dataView(String npm);
+	Mahasiswa view(int id);
 	void updateMahasiswa (Mahasiswa mahasiswa);
 	void deleteMahasiswa (Mahasiswa mahasiswa);
 	Mahasiswa lulus(String lulus);
