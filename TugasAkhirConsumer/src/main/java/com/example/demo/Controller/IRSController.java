@@ -25,7 +25,8 @@ public class IRSController {
     IRSService irsService;
 
     @GetMapping("/irs/view/{id}")
-    public String irsView(@PathVariable(value="id") String id){
+    public String irsView(@PathVariable(value="id") String id, Model model){
+    	model.addAttribute("idMahasiswa", id);
         return "lihat-irs";
     }
 
@@ -34,6 +35,7 @@ public class IRSController {
 
         model.addAttribute("id_mahasiswa", "1");
         model.addAttribute("id_term", "6");
+        model.addAttribute("idMahasiswa", "1");
         return "isi-irs";
     }
 
@@ -73,6 +75,7 @@ public class IRSController {
 
         model.addAttribute("irs", irs);
         model.addAttribute("kelas", kelas);
+        model.addAttribute("idMahasiswa", id);
         return "ubah-irs";
     }
 

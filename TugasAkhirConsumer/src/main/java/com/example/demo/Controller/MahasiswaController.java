@@ -65,6 +65,7 @@ public class MahasiswaController {
     	}
     	
     	model.addAttribute("irs", irs);
+    	model.addAttribute("idMahasiswa", id);
         return "riwayat";
     }
     
