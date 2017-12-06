@@ -47,7 +47,7 @@ public class MahasiswaDatabaseController {
     		Map<String, Object> namauniversitas = (Map<String, Object>) resultUniversitas.get("universitas");
 
     		String namaUniversitas = namauniversitas.get("nama_univ").toString();
-    		model.addAttribute("universitas", namaUniversitas);
+    		view.setNama_univ(namaUniversitas);
 
     		Map<String, Object> fakultas = fakultasDAO.namaFakultas(view.getId_univ(), view.getId_fakultas());
     		Map<String, Object> resultFakultas = (Map<String, Object>) fakultas.get("result");
@@ -55,16 +55,16 @@ public class MahasiswaDatabaseController {
     		System.out.println(resultFakultas.get("fakultas"));
 
     		String namaFakultas = namafakultas.get("nama_fakultas").toString();
-    		model.addAttribute("fakultas", namaFakultas);
-
+    		view.setNama_fakultas(namaFakultas);
 
     		Map<String, Object> prodi = fakultasDAO.namaProdi(view.getId_univ(), view.getId_fakultas(), view.getId_program_studi());
        	    Map<String, Object> resultProdi = (Map<String, Object>) prodi.get("result");
     		Map<String, Object> namaprodi = (Map<String, Object>) resultProdi.get("prodi");
 
     		String namaProdi = namaprodi.get("nama_prodi").toString();
+    		view.setNama_prodi(namaProdi);
+    		
     		model.addAttribute("prodi", namaProdi);
-
     		model.addAttribute("mahasiswa", view);
         return "lihat-mahasiswa";
     }

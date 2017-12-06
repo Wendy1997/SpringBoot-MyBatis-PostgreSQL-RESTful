@@ -84,7 +84,8 @@ public class LoginController {
 		System.out.println(counter);
 		
 		String id = mahasiswaDAO.getId(username) + "";
-		if(id != null) {
+		System.out.println(id);
+		if(Integer.parseInt(id) <= 0) {
 			System.out.println(username);
 			mahasiswaDAO.addUser(username, viewall.get(viewall.size()-1).getId());
 			mahasiswaDAO.addUserRole(viewall.get(viewall.size()-1).getId(), username);			
