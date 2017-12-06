@@ -1,6 +1,7 @@
 package com.example.demo.Controller;
 
 import com.example.demo.Model.IRS;
+import com.example.demo.Model.Kelas;
 import com.example.demo.Service.IRSService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -44,9 +45,9 @@ public class IRSController {
         irs.setId_term(request.getParameter("id_term"));
 
         String[] irs_list = request.getParameter("irs_list").split(",");
-        List<String> kelas_list = new ArrayList<>();
+        List<Kelas> kelas_list = new ArrayList<>();
         for(String kelas : irs_list){
-            kelas_list.add(kelas);
+            kelas_list.add(new Kelas(Integer.parseInt(kelas)));
         }
 
         irs.setKelas_list(kelas_list);
@@ -83,9 +84,9 @@ public class IRSController {
         irs.setId_term(request.getParameter("id_term"));
 
         String[] irs_list = request.getParameter("irs_list").split(",");
-        List<String> kelas_list = new ArrayList<>();
+        List<Kelas> kelas_list = new ArrayList<>();
         for(String kelas : irs_list){
-            kelas_list.add(kelas);
+            kelas_list.add(new Kelas(Integer.parseInt(kelas)));
         }
 
         irs.setKelas_list(kelas_list);

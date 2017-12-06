@@ -47,11 +47,11 @@
 											    	<tbody>
 											      		<tr th:each="kelas, iterationStatus: ${irs.kelas_list}">
 													        <td th:text="${iterationStatus.count}">1</td>
-													        <td th:text="${kelas}">CSC1234567</td>
-													        <td>Nama Kelas</td>
-													        <td>SKS</td>
-	                                                        <td>Nilai Angka</td>
-	                                                        <td>Nilai Huruf</td>
+													        <td th:text="${kelas.kode_mk}">CSC1234567</td>
+													        <td th:text="${kelas.nama_kelas}">Nama Kelas</td>
+													        <td th:text="${kelas.sks}">SKS</td>
+	                                                        <td th:text="${kelas.nilaiAngka}">Nilai Angka</td>
+	                                                        <td th:switch="${kelas.nilaiHuruf}">Nilai Huruf</td>
 												      	</tr>
 												    </tbody>
 											  </table>

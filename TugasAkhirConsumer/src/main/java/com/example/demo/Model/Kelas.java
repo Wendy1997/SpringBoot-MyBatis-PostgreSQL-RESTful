@@ -18,5 +18,13 @@ public class Kelas {
     String jadwal;
     String ruangan;
     String dosen;
+    
+    //Penilaian
+    double nilaiAngka;
+    String nilaiHuruf;
+    
+    public Kelas(int id) {
+    	this.id = id;
+    }
 
 }

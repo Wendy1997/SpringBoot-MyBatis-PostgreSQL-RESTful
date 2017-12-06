@@ -32,14 +32,16 @@ public class KelasServiceRest implements KelasService {
                     kelasList.add( new Kelas(
                             jsonKelas.getJSONObject(i).getInt("id"),
                             jsonKelas.getJSONObject(i).getString("kode_mk"),
-                            jsonKelas.getJSONObject(i).getString("ama_kelas"),
+                            jsonKelas.getJSONObject(i).getString("nama_kelas"),
                             jsonKelas.getJSONObject(i).getInt("nomor_term"),
                             jsonKelas.getJSONObject(i).getInt("sks"),
                             jsonKelas.getJSONObject(i).getInt("periode_start"),
                             jsonKelas.getJSONObject(i).getInt("periode_end"),
                             jsonKelas.getJSONObject(i).getString("jadwal"),
                             jsonKelas.getJSONObject(i).getString("ruangan"),
-                            jsonKelas.getJSONObject(i).getString("dosen")
+                            jsonKelas.getJSONObject(i).getString("dosen"),
+                            0,
+                            "E"
                     ));
                 }
             }
@@ -69,11 +71,12 @@ public class KelasServiceRest implements KelasService {
                         jsonKelas.getInt("periode_end"),
                         jsonKelas.getString("jadwal"),
                         jsonKelas.getString("ruangan"),
-                        jsonKelas.getString("dosen")
+                        jsonKelas.getString("dosen"),
+                        0,
+                        "E"
                 );
-
             }
-        }catch (Exception e) {
+        }catch(Exception e) {
             e.printStackTrace();
         }
         return kelas;
