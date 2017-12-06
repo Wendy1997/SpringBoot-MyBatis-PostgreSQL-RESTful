@@ -34,31 +34,35 @@ public class MahasiswaController {
     	for(int i = 0; i < irs.size(); i++) {
     		List<Kelas> kelas = irs.get(i).getKelas_list();
     		for(int j = 0; j < kelas.size(); j++) {
-    			if((kelas.get(j).getNilaiAngka() >= 0) && (kelas.get(j).getNilaiAngka() < 40)) {
+    			
+    			kelas.get(j).setNilaiAngka(10);
+    			
+    			
+    			if(kelas.get(j).getNilaiAngka() < 40) {
     				kelas.get(j).setNilaiHuruf("E");
     			}
-    			if((kelas.get(j).getNilaiAngka() >= 40) && (kelas.get(j).getNilaiAngka() < 55)) {
+    			else if((kelas.get(j).getNilaiAngka() < 55)) {
     				kelas.get(j).setNilaiHuruf("D");
     			}
-    			if((kelas.get(j).getNilaiAngka() >= 55) && (kelas.get(j).getNilaiAngka() < 60)) {
+    			else if((kelas.get(j).getNilaiAngka() < 60)) {
     				kelas.get(j).setNilaiHuruf("C");
     			}
-    			if((kelas.get(j).getNilaiAngka() >= 60) && (kelas.get(j).getNilaiAngka() < 65)) {
+    			else if((kelas.get(j).getNilaiAngka() < 65)) {
     				kelas.get(j).setNilaiHuruf("C+");
     			}
-    			if((kelas.get(j).getNilaiAngka() >= 65) && (kelas.get(j).getNilaiAngka() < 70)) {
+    			else if((kelas.get(j).getNilaiAngka() < 70)) {
     				kelas.get(j).setNilaiHuruf("B-");
     			}
-    			if((kelas.get(j).getNilaiAngka() >= 70) && (kelas.get(j).getNilaiAngka() < 75)) {
+    			else if((kelas.get(j).getNilaiAngka() < 75)) {
     				kelas.get(j).setNilaiHuruf("B");
     			}
-    			if((kelas.get(j).getNilaiAngka() >= 75) && (kelas.get(j).getNilaiAngka() < 80)) {
+    			else if((kelas.get(j).getNilaiAngka() < 80)) {
     				kelas.get(j).setNilaiHuruf("B+");
     			}
-    			if((kelas.get(j).getNilaiAngka() >= 80) && (kelas.get(j).getNilaiAngka() < 85)) {
+    			else if((kelas.get(j).getNilaiAngka() < 85)) {
     				kelas.get(j).setNilaiHuruf("A-");
     			}
-    			if((kelas.get(j).getNilaiAngka() >= 85) ) {
+    			else {
     				kelas.get(j).setNilaiHuruf("A");
     			}
     		}
