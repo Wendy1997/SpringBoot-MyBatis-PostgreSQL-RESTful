@@ -57,7 +57,7 @@
 													<div class="col-md-12">
 														<div class="form-group">
 															<label>Universitas</label> <select class="form-control"
-															name="id_univ" id="univ" required="true" >
+																name="id_univ" id="univ" required="true">
 																<option value="-1">--Pilih Universitas</option>
 																<option th:each="univ : ${univ}" 
 																	th:value="${univ.id_univ}" th:text="${univ.nama_univ}"
@@ -105,7 +105,11 @@
 <div th:replace="fragment :: javascript"></div>
 <script type="text/javascript" th:inline="javascript">
 	$(document).ready(function(){
+<<<<<<< HEAD
         sendAjax();
+=======
+		// sendAjax();
+>>>>>>> login
 		$('select[name="id_univ"]').change(function() {
 			var id = $(this).val();
 			$.ajax({
@@ -151,10 +155,16 @@
 	
 	function sendAjax(){
 		var id = $("#univ").val();
+<<<<<<< HEAD
         var fakultas = [[${data.id_fakultas}]];
         $.ajax({
 			type:'GET',
 			url : "/mahasiswa/add/fakultas",
+=======
+		$.ajax({
+			type:'GET',
+			url : "/mahasiswa/update/fakultas",
+>>>>>>> login
 			dataType: "html",
 			data: {
 				namafakultas: id
@@ -174,7 +184,10 @@
 
                 var html = '<option value="">--Pilih Prodi</option>';
                 document.getElementById('prodi').innerHTML = html;
+<<<<<<< HEAD
                 getProdi()
+=======
+>>>>>>> login
 			}
 		})
 	}
