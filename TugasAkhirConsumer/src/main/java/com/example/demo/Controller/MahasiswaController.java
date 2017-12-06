@@ -34,17 +34,16 @@ public class MahasiswaController {
     IRSService irsService;
 	
 	@Autowired
-<<<<<<< HEAD
     TermService termService;
 	
 	@Autowired
     NilaiService nilaiService;
-=======
+	
+	@Autowired
 	MahasiswaService mahasiswaDAO;
 	
 	@Autowired
 	FakultasService fakultasDAO;
->>>>>>> 0b15a4b535d5ce99db88899e701da7ad1603b83e
 
     @GetMapping("/mahasiswa/riwayat/{id}")
     public String mahasiswaRiwayat(@PathVariable(value="id") String id, Model model){
