@@ -153,7 +153,7 @@ public class MahasiswaDatabaseController {
     public String mahasiswaAddSubmit(@ModelAttribute Mahasiswa mahasiswa, Model model){
     		mahasiswaDAO.add(mahasiswa);
     		
-        return "dashboard-mahasiswa";
+        return "redirect:/mahasiswa/viewall";
     }
 
     @GetMapping("/mahasiswa/update/{npm}")

@@ -1,22 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-
-<head>
-    <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-icon.png" />
-    <link rel="icon" type="image/png" href="/img/favicon.png" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <title>SIAK - Beranda</title>
-    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
-    <!--     Fonts and icons     -->
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
-    <!-- CSS Files -->
-    <link href="/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="/css/now-ui-kit.css?v=1.1.0" rel="stylesheet" />
-    <!-- CSS Just for demo purpose, don't include it in your project -->
-    <link href="/css/demo.css" rel="stylesheet" />
-</head>
-
+<div th:replace="fragment :: header"></div>
 <body class="profile-page sidebar-collapse">
    <div th:replace="fragment :: navbarAdmin"></div>
 
@@ -61,7 +45,7 @@
                                                 <tbody>
                                                     <tr th:each="mahasiswa,iterationStatus:${mahasiswa}">
                                                         <td th:text="${iterationStatus.count}">1. </td>
-                                                        <td th:text="${mahasiswa.npm}">1506671234</td>
+                                                        <td><a th:href="@{'/mahasiswa/view/' + ${mahasiswa.npm}}" th:text="${mahasiswa.npm}">1506671234</a></td>
                                                         <td th:text="${mahasiswa.nama}">George Washington</td>
                                                         <td th:text="${mahasiswa.nama_prodi}">Ilmu Komputer</td>
                                                         <td th:text="${mahasiswa.nama_fakultas}">Fakultas Ilmu Komputer</td>

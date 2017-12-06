@@ -57,5 +57,17 @@ public class MahasiswaServiceRest implements MahasiswaService {
 		// TODO Auto-generated method stub
 		return mahasiswaDAO.getId(username);
 	}
+
+	@Override
+	public void addUserRole(int user_role_id, String username) {
+		// TODO Auto-generated method stub
+		mahasiswaDAO.addUserRole(user_role_id, username);
+	}
+
+	@Override
+	public void addUser(String username, int id_mahasiswa) {
+		// TODO Auto-generated method stub
+		mahasiswaDAO.addUser(username, id_mahasiswa);
+	}
 	
 }

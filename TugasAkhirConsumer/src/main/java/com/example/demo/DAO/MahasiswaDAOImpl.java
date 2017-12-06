@@ -37,6 +37,20 @@ public class MahasiswaDAOImpl implements MahasiswaService, FakultasService {
 		mahasiswamapper.add(mahasiswa);
 		
 	}
+	
+	@Override
+	public void addUser(String username, int id_mahasiswa) {
+		// TODO Auto-generated method stub
+		mahasiswamapper.addUser(username, id_mahasiswa);
+		
+	}
+	
+	@Override
+	public void addUserRole(int user_role_id, String username) {
+		// TODO Auto-generated method stub
+		mahasiswamapper.addUserRole(user_role_id, username);
+		
+	}
 
 	@Override
 	public Mahasiswa dataView(String npm) {
@@ -48,7 +62,13 @@ public class MahasiswaDAOImpl implements MahasiswaService, FakultasService {
 	@Override
 	public int getId(String username) {
 		// TODO Auto-generated method stub
-		return mahasiswamapper.getId(username);
+		int id;
+		if(mahasiswamapper.getId(username) == null) {
+			id = 0;
+		} else {
+			id = Integer.parseInt(mahasiswamapper.getId(username));
+		}
+		return (id);
 	}
 	
 	@Override

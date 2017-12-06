@@ -21,4 +21,9 @@ public interface MahasiswaService {
 	Mahasiswa view(int id);
 	
 	int getId(String username);
+
+	void addUserRole(int user_role_id, String username);
+
+	void addUser(String username, int id_mahasiswa);
+
 }
