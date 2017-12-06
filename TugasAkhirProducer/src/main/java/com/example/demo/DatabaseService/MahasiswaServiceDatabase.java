@@ -44,4 +44,9 @@ public class MahasiswaServiceDatabase implements MahasiswaService {
 	public Mahasiswa dataView(String npm) {
 		return mahasiswaDao.dataView(npm);
 	}
+	
+	@Override
+	public Mahasiswa view(int id) {
+		return mahasiswaDao.view(id);
+	}
 }

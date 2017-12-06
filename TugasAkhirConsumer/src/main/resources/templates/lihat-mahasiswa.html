@@ -47,8 +47,8 @@
                                     <div class="tab-content">
                                             <p th:text="'Nama : ' + ${mahasiswa.nama}">Nama : Wendy Damar Wisma Trisna Bayu</p>
                                             <p th:text="'NPM : ' + ${mahasiswa.npm}">NPM : 1506737823</p>
-                                            <p th:text="'Fakultas : ' + ${fakultas}">Fakultas : Ilmu Komputer</p>
-                                            <p th:text="'Prodi : ' + ${prodi}">Jurusan : Sistem Informasi</p>
+                                            <p th:text="'Fakultas : ' + ${mahasiswa.nama_fakultas}">Fakultas : Ilmu Komputer</p>
+                                            <p th:text="'Prodi : ' + ${mahasiswa.nama_prodi}">Jurusan : Sistem Informasi</p>
                                             <p th:if="${mahasiswa.is_dapat_lulus} == 0" th:text='Belum Lulus'>Belum lulus</p>
                                             <p th:if="${mahasiswa.is_dapat_lulus}" th:text='Lulus'>Belum lulus</p>
                                             <div class="text-center"><button class="btn btn-primary btn-round" type="button">Ubah IRS</button></div>

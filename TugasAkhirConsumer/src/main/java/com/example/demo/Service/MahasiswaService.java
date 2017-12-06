@@ -18,5 +18,7 @@ public interface MahasiswaService {
 
 	Mahasiswa lulus(String lulus);
 	
+	Mahasiswa view(int id);
 	
+	int getId(String username);
 }

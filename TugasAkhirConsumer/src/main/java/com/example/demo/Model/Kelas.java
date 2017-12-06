@@ -26,5 +26,4 @@ public class Kelas {
     public Kelas(int id) {
     	this.id = id;
     }
-
 }
