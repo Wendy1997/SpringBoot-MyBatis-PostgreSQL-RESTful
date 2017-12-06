@@ -2,6 +2,7 @@ package com.example.demo.RestService;
 
 import com.example.demo.DAO.IRSDAO;
 import com.example.demo.Model.IRS;
+import com.example.demo.Model.Kelas;
 import com.example.demo.Service.IRSService;
 
 import java.util.List;
@@ -23,4 +24,11 @@ public class KelasServiceRest implements KelasService {
 	@Autowired
     private IRSDAO irsdao;
 
+	@Override
+	public Kelas getKelas(String id) {
+		// TODO Auto-generated method stub
+		Kelas kelas = restTemplate.getForObject("http://localhost:8080/api/kelas/detail/" + id, Kelas.class);
+        return kelas;
+	}
+	
 }

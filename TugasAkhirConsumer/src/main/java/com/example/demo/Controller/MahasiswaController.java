@@ -13,6 +13,7 @@ import com.example.demo.DAO.MahasiswaDAOImpl;
 import com.example.demo.Model.IRS;
 import com.example.demo.Model.Mahasiswa;
 import com.example.demo.RestService.IRSServiceRest;
+import com.example.demo.RestService.KelasServiceRest;
 import com.example.demo.Service.FakultasService;
 import com.example.demo.Service.IRSService;
 import com.example.demo.Service.MahasiswaService;
@@ -22,6 +23,9 @@ public class MahasiswaController {
 	
 	@Autowired
     IRSServiceRest irsService;
+	
+	@Autowired
+    KelasServiceRest kelasService;
 	
     @GetMapping("/mahasiswa")
     public String mahasiswaDashboard(){
@@ -33,8 +37,11 @@ public class MahasiswaController {
     		@PathVariable(value="id") String id,
     		Model model){
     	
+    	//Get IRS
     	List<IRS> irs = irsService.getAllIRS(id);	
     	model.addAttribute("irs", irs);
+    	
+    	//Get Kelas
    
         return "riwayat";
     }
