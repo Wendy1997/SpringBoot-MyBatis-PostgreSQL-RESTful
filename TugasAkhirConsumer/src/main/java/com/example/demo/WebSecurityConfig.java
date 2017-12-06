@@ -37,10 +37,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter
 	{
 		http
 		.authorizeRequests()
-		.antMatchers("/mahasiswa/viewall", "/mahasiswa/view", "/mahasiswa/add",
+		.antMatchers("/mahasiswa/viewall", "/mahasiswa/view/**", "/mahasiswa/add",
 				"/mahasiswa/update", "/mahasiswa/update/**" , "/mahasiswa/delete").hasAnyRole("ADMIN")
 		.antMatchers("/mahasiswa/riwayat", "/mahasiswa/ringkasan", "/mahasiswa", "/irs/**").hasRole("USER")
-		.antMatchers("/mahasiswa/view/**").hasAnyRole("ADMIN", "USER")
 		.and().formLogin().loginPage("/login").successHandler(customSuccessHandler)
 		.and().logout().permitAll().logoutSuccessUrl("/login").and();
 	}
@@ -49,7 +48,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter
 	public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception
 	{
 		auth.jdbcAuthentication().dataSource(dataSource)
-		.usersByUsernameQuery("select username,password,enabled from users where username=?")
+		.usersByUsernameQuery("select * from users where username=?")
 		.authoritiesByUsernameQuery("select username, role from user_roles where username=?");
 	}
 

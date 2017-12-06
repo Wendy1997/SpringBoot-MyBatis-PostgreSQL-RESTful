@@ -46,6 +46,12 @@ public class MahasiswaDAOImpl implements MahasiswaService, FakultasService {
 	}
 	
 	@Override
+	public int getId(String username) {
+		// TODO Auto-generated method stub
+		return mahasiswamapper.getId(username);
+	}
+	
+	@Override
 	public void update(Mahasiswa mahasiswa) {
 		// TODO Auto-generated method stub
 		mahasiswamapper.update(mahasiswa);
@@ -77,5 +83,12 @@ public class MahasiswaDAOImpl implements MahasiswaService, FakultasService {
 		// TODO Auto-generated method stub
 		Map<String, Object> prodi = restTemplate.getForObject("https://apap2017-univ-apps.herokuapp.com/getProdi/" + id_univ + "/" + id_fakultas + "/" + id_prodi, Map.class);
 		return prodi;
+	}
+	
+	@Override
+	public Mahasiswa view(int id) {
+		// TODO Auto-generated method stub
+		Mahasiswa mahasiswa = restTemplate.getForObject("http://localhost:8080/api/mahasiswa/ringkasan/" + id, Mahasiswa.class);
+		return mahasiswa;
 	}
 }

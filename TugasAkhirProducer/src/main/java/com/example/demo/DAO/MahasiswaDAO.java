@@ -28,6 +28,9 @@ public interface MahasiswaDAO {
 	@Select("Select * from mahasiswa where npm = #{npm}")
 	Mahasiswa dataView (@Param("npm") String npm);
 	
+	@Select("Select * from mahasiswa where id = #{id}")
+	Mahasiswa view (int id);
+	
 	@Update("Update mahasiswa set is_dapat_lulus = 1 where id = #{id} ")
 	Mahasiswa lulus(@Param("lulus") String lulus);
 	

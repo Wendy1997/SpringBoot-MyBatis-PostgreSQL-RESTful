@@ -29,5 +29,4 @@ public class Mahasiswa {
     List<Fakultas> listProdi;
     List<IRS> irsList;
     List<Nilai> nilaiList;
-  
 }

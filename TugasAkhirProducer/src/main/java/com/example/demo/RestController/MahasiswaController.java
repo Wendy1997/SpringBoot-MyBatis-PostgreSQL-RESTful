@@ -26,6 +26,12 @@ public class MahasiswaController {
     		Mahasiswa data = servicemahasiswa.dataView(npm);
         return data;
     }
+    
+    @GetMapping("/mahasiswa/ringkasan/{id}")
+    public Mahasiswa viewMahasiswa(@PathVariable(value = "id") int id, Model model){
+    		Mahasiswa data = servicemahasiswa.view(id);
+        return data;
+    }
 
     @GetMapping("/mahasiswa/viewall")
     public List<Mahasiswa> mahasiswaViewAll(Model model){

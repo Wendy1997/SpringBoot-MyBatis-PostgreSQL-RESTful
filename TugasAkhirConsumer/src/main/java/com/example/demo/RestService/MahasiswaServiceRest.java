@@ -46,5 +46,16 @@ public class MahasiswaServiceRest implements MahasiswaService {
 		return null;
 	}
 
+	@Override
+	public Mahasiswa view(int id) {
+		// TODO Auto-generated method stub
+		return mahasiswaDAO.view(id);
+	}
+
+	@Override
+	public int getId(String username) {
+		// TODO Auto-generated method stub
+		return mahasiswaDAO.getId(username);
+	}
 	
 }
