@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Fakultas {
-    Integer id_univ;
-    Integer id_fakultas;
+    int id_univ;
+    int id_fakultas;
     String nama_fakultas;
 }

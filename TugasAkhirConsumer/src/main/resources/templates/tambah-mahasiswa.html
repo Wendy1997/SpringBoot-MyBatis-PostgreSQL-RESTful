@@ -1,57 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-
-<head>
-<link rel="apple-touch-icon" sizes="76x76" href="./img/apple-icon.png" />
-<link rel="icon" type="image/png" href="./img/favicon.png" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<title>SIAK - Beranda</title>
-<meta
-	content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
-	name='viewport' />
-<!--     Fonts and icons     -->
-<link
-	href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200"
-	rel="stylesheet" />
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
-<!-- CSS Files -->
-<link href="../css/bootstrap.min.css" rel="stylesheet" />
-<link href="../css/now-ui-kit.css?v=1.1.0" rel="stylesheet" />
-<!-- CSS Just for demo purpose, don't include it in your project -->
-<link href="../css/demo.css" rel="stylesheet" />
-</head>
-
+<div th:replace="fragment :: header"></div>
 <body class="profile-page sidebar-collapse">
-	<!-- Navbar -->
-	<nav
-		class="navbar navbar-expand-lg bg-primary fixed-top navbar-transparent "
-		color-on-scroll="400">
-		<div class="container">
-			<div class="navbar-translate">
-				<a class="navbar-brand" href="../index.html" rel="tooltip"
-					title="SIAK" data-placement="bottom" target="_blank"> SISTEM
-					INFORMASI AKADEMIK </a>
-			</div>
-			<div class="collapse navbar-collapse justify-content-end"
-				id="navigation" data-nav-image="./../img/blurred-image-1.jpg">
-				<ul class="navbar-nav">
-					<li class="nav-item"><a class="nav-link" href="#" onclick="">
-							<p>Dashboard</p>
-					</a></li>
-					<li class="nav-item"><a class="nav-link" href="#"
-						target="_blank">
-							<p>Tambah Mahasiswa</p>
-					</a></li>
-					<li class="nav-item"><a class="nav-link" href="#"
-						target="_blank">
-							<p>Logout</p>
-					</a></li>
-				</ul>
-			</div>
-		</div>
-	</nav>
-	<!-- End Navbar -->
+	<div th:replace="fragment :: navbarAdmin"></div>
 
 	<div class="wrapper">
 		<div class="page-header page-header-small" filter-color="orange">
@@ -85,7 +36,7 @@
 														<div class="form-group">
 															<label>Nama Lengkap</label> <input type="text" value=""
 																name="nama" placeholder="Nama Lengkap"
-																class="form-control" />
+																class="form-control" required="true"/>
 														</div>
 													</div>
 													<input name="is_dapat_lulus" type="hidden"
@@ -97,13 +48,13 @@
 													<div class="col-md-12">
 														<div class="form-group">
 															<label>NPM</label> <input type="text" value="" name="npm"
-																placeholder="NPM" class="form-control" />
+																placeholder="NPM" class="form-control"  required="true"/>
 														</div>
 													</div>
 													<div class="col-md-12">
 														<div class="form-group">
 															<label>Universitas</label> <select class="form-control"
-																name="id_univ" id="univ">
+																name="id_univ" id="univ" required="true">
 																<option value="">--Pilih Universitas</option>
 																<option th:each="univ : ${univ}"
 																	th:value="${univ.id_univ}" th:text="${univ.nama_univ}">
@@ -114,8 +65,8 @@
 													<div class="col-md-12">
 														<div class="form-group">
 															<label>Fakultas</label> <select class="form-control"
-																name="id_fakultas" id="fakultas">
-																<option value="">--Pilih fakultas</option>
+																name="id_fakultas" id="fakultas" required="true">
+																<option value="">--Pilih Fakultas</option>
 
 															</select>
 														</div>
@@ -123,7 +74,7 @@
 													<div class="col-md-12">
 														<div class="form-group">
 															<label>Program Studi</label> <select class="form-control"
-																name="id_program_studi" id="prodi">
+																name="id_program_studi" id="prodi" required="true">
 																<option value="">--Pilih Prodi</option>
 															</select>
 														</div>
@@ -154,29 +105,31 @@
 		$('select[name="id_univ"]').change(function() {
 			var id = $(this).val();
 			$.ajax({
-				type:'POST',
+				type:'GET',
 				url : "/mahasiswa/add/fakultas",
 				dataType: "html",
 				data: {
 					namafakultas: id
 				},
 				success: function(response) {
-					var obj = JSON.parse(response);
-					var html = '<option value="">--Pilih fakultas</option>';
+				    var obj = JSON.parse(response);
+					var html = '<option value="">--Pilih Fakultas</option>';
 		            for(var i in obj ){
 		                 html += '<option value="' + obj[i].id_fakultas + '">' + obj[i].nama_fakultas + '</option>';
-		                 console.log(html);
 		             }
 		            document.getElementById('fakultas').innerHTML = html;
-				}
+
+                    var html = '<option value="">--Pilih Prodi</option>';
+                    document.getElementById('prodi').innerHTML = html;
+                }
 			})
 		});
+
 		$('select[name="id_fakultas"]').change(function() {
 			var id_univ = $('#fakultas').val();
 			var id_fakultas = $(this).val();
-			console.log($(this).val());
 			$.ajax({
-				type:'POST',
+				type:'GET',
 				url : "/mahasiswa/add/prodi",
 				dataType: "html",
 				data: {
@@ -188,7 +141,6 @@
 					var html = '<option value="">--Pilih Prodi</option>';
 		            for(var i in obj ){
 		                 html += '<option value="' + obj[i].id_prodi + '">' + obj[i].nama_prodi + '</option>';
-		                 console.log(html);
 		             }
 		            document.getElementById('prodi').innerHTML = html;
 				}

@@ -9,6 +9,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Kelas {
     int id;
-    int idMataKuliah;
-    String namaKelas;
+    String kode_mk;
+    String nama_kelas;
+    int nomor_term;
+    int sks;
+    int periode_start;
+    int periode_end;
+    String jadwal;
+    String ruangan;
+    String dosen;
 }

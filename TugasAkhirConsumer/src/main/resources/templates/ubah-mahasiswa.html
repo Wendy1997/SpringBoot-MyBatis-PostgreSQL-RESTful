@@ -39,7 +39,7 @@
 														<div class="form-group">
 															<label>Nama Lengkap</label> <input type="text" value=""
 																th:field="${data.nama}" placeholder="Nama"
-																class="form-control" />
+																class="form-control"  required="true"/>
 														</div>
 													</div>
 													<input name="is_dapat_lulus" type="hidden"
@@ -51,13 +51,13 @@
 														<div class="form-group">
 															<label>NPM</label> <input type="text" value=""
 																th:field="${data.npm}" placeholder="NPM"
-																class="form-control" />
+																class="form-control"  required="true"/>
 														</div>
 													</div>
 													<div class="col-md-12">
 														<div class="form-group">
 															<label>Universitas</label> <select class="form-control"
-																name="id_univ" id="univ">
+																name="id_univ" id="univ" required="true">
 																<option value="-1">--Pilih Universitas</option>
 																<option th:each="univ : ${univ}"
 																	th:value="${univ.id_univ}" th:text="${univ.nama_univ}"
@@ -69,7 +69,7 @@
 													<div class="col-md-12">
 														<div class="form-group">
 															<label>Fakultas</label> <select class="form-control"
-																name="id_fakultas" id="fakultas">
+																name="id_fakultas" id="fakultas" required="true">
 																<option value="-1">--Pilih fakultas</option>
 															</select>
 														</div>
@@ -77,7 +77,7 @@
 													<div class="col-md-12">
 														<div class="form-group">
 															<label>Program Studi</label> <select class="form-control"
-																name="id_program_studi" id="prodi">
+																name="id_program_studi" id="prodi" required="true">
 																<option value="-1">--Pilih Prodi</option>
 															</select>
 														</div>
@@ -105,11 +105,11 @@
 <div th:replace="fragment :: javascript"></div>
 <script type="text/javascript">
 	$(document).ready(function(){
-		sendAjax();
+		// sendAjax();
 		$('select[name="id_univ"]').change(function() {
 			var id = $(this).val();
 			$.ajax({
-				type:'POST',
+				type:'GET',
 				url : "/mahasiswa/update/fakultas",
 				dataType: "html",
 				data: {
@@ -133,7 +133,7 @@
 			var id_univ = $('#univ').val();
 			var id_fakultas = $(this).val();
 			$.ajax({
-				type:'POST',
+				type:'GET',
 				url : "/mahasiswa/update/prodi",
 				dataType: "html",
 				data: {
@@ -156,7 +156,7 @@
 	function sendAjax(){
 		var id = $("#univ").val();
 		$.ajax({
-			type:'POST',
+			type:'GET',
 			url : "/mahasiswa/update/fakultas",
 			dataType: "html",
 			data: {
@@ -173,7 +173,9 @@
 	            		}
 	             }
 	            document.getElementById('fakultas').innerHTML = html;
-	            getProdi();
+
+                var html = '<option value="">--Pilih Prodi</option>';
+                document.getElementById('prodi').innerHTML = html;
 			}
 		})
 	}
@@ -181,7 +183,7 @@
 		var id_univ = $('#univ').val();
 		var id_fakultas = $('#fakultas').val();
 		$.ajax({
-			type:'POST',
+			type:'GET',
 			url : "/mahasiswa/update/prodi",
 			dataType: "html",
 			data: {
