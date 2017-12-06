@@ -2,6 +2,9 @@ package com.example.demo.DAO;
 
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Results;
+import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
@@ -19,6 +22,19 @@ public interface mahasiswaMapper {
 	void update(Mahasiswa mahasiswa);
 	
 	@Select("select id_mahasiswa from users where username = #{username}")
-	int getId(String username);
+	String getId(String username);
 	
+	@Insert("Insert into users (username, password, enabled, id_mahasiswa) "
+			+ "VALUES (#{username}, 'password', 1, #{id_mahasiswa})")
+	@Results(value = {
+			@Result(property="username", column="username"),
+			@Result(property="id_mahasiswa", column="id_mahasiswa")})
+	void addUser(@Param("username") String username, @Param("id_mahasiswa") int id_mahasiswa);
+	
+	@Insert("Insert into user_roles (user_role_id, username, role) "
+			+ "VALUES (#{user_role_id}, #{username}, 'ROLE_USER')")
+	@Results(value = {
+			@Result(property="username", column="username"),
+			@Result(property="user_role_id", column="user_role_id")})
+	void addUserRole(@Param("user_role_id")int user_role_id, @Param("username") String username);
 }

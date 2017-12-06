@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.Model.Mahasiswa;
 import com.example.demo.Service.FakultasService;
@@ -33,8 +35,33 @@ public class LoginController {
     public String mahasiswaViewAll(Model model, ModelMap modelMap){
     	
     	List<Mahasiswa> viewall = mahasiswaDAO.selectAllMahasiswa();
+    	String username = "";
+    	int counter = 0;
+    	
+    	String[] nama = viewall.get(viewall.size()-1).getNama().split(" ");
+		if(nama.length > 0) {
+			username = nama[0].toLowerCase() + "." + nama[1].toLowerCase();
+		} else {
+			username = nama[0].toLowerCase();
+		}
+		
 		for(int i = 0; i < viewall.size(); i++) {
-//			System.out.println(viewall.get(i).getId_univ() +" "+ viewall.get(i).getId_fakultas());
+			if(i != viewall.size()) {
+				String[] namaTemp = viewall.get(i).getNama().split(" ");
+				String usernameTemp = "";
+				if(namaTemp.length > 0) {
+					usernameTemp = namaTemp[0].toLowerCase() + "." + namaTemp[1].toLowerCase();
+					if(username.equalsIgnoreCase(usernameTemp)) {
+						counter = counter + 1;
+					}
+				} else {
+					usernameTemp = namaTemp[0].toLowerCase();
+					if(username.equalsIgnoreCase(usernameTemp)) {
+						counter = counter + 1;
+					}
+				}
+			}
+			
 			Map<String, Object> fakultas = fakultasDAO.namaFakultas(viewall.get(i).getId_univ(), viewall.get(i).getId_fakultas());
 			Map<String, Object> resultFakultas = (Map<String, Object>) fakultas.get("result");
 			Map<String, Object> namafakultas = (Map<String, Object>) resultFakultas.get("fakultas");
@@ -51,8 +78,20 @@ public class LoginController {
 			viewall.get(i).setNama_prodi(namaProdi);
 		}
 		
+		if(counter > 1) {
+			username = username + counter + "";
+		}
+		System.out.println(counter);
+		
+		String id = mahasiswaDAO.getId(username) + "";
+		if(id != null) {
+			System.out.println(username);
+			mahasiswaDAO.addUser(username, viewall.get(viewall.size()-1).getId());
+			mahasiswaDAO.addUserRole(viewall.get(viewall.size()-1).getId(), username);			
+		}
+		
 		model.addAttribute("mahasiswa", viewall);
-    	modelMap.addAttribute("user", getPrincipal());    		
+    	model.addAttribute("user", getPrincipal());    		
         return "dashboard-admin";
     }
     

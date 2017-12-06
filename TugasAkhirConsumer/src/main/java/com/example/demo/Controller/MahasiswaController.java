@@ -104,7 +104,7 @@ public class MahasiswaController {
 		
         model.addAttribute("user", getPrincipal());
 		model.addAttribute(mahasiswa);
-    	return "lihat-mahasiswa";
+    	return "ringkasan";
     }
     
     private String getPrincipal(){
