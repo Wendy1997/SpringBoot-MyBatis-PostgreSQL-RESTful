@@ -13,12 +13,15 @@ import com.example.demo.DAO.MahasiswaDAOImpl;
 import com.example.demo.Model.IRS;
 import com.example.demo.Model.Kelas;
 import com.example.demo.Model.Mahasiswa;
+import com.example.demo.Model.Nilai;
+import com.example.demo.Model.Term;
 import com.example.demo.RestService.IRSServiceRest;
 import com.example.demo.RestService.KelasServiceRest;
 import com.example.demo.Service.FakultasService;
 import com.example.demo.Service.IRSService;
 import com.example.demo.Service.MahasiswaService;
-
+import com.example.demo.Service.NilaiService;
+import com.example.demo.Service.TermService;
 import com.example.demo.Service.KelasService;
 
 @Controller
@@ -26,17 +29,31 @@ public class MahasiswaController {
 	
 	@Autowired
     IRSService irsService;
+	
+	@Autowired
+    TermService termService;
+	
+	@Autowired
+    NilaiService nilaiService;
 
     @GetMapping("/mahasiswa/riwayat/{id}")
     public String mahasiswaRiwayat(@PathVariable(value="id") String id, Model model){
     	List<IRS> irs  = irsService.getAllIRS(id);
     	
     	for(int i = 0; i < irs.size(); i++) {
+    		
+    		//SET TERM
+    		Term term = termService.getTerm(irs.get(i).getId_term());
+    		irs.get(i).setTerm(term);
+    		
+    		//SET KELAS
     		List<Kelas> kelas = irs.get(i).getKelas_list();
     		for(int j = 0; j < kelas.size(); j++) {
     			
-    			kelas.get(j).setNilaiAngka(10);
-    			
+    			//GET NILAI
+    			String npm = "15066723415"; //default
+    			Nilai nilai = nilaiService.getNilai(npm, kelas.get(j).getKode_mk());
+    			kelas.get(j).setNilaiAngka(nilai.getNilaiAngka());
     			
     			if(kelas.get(j).getNilaiAngka() < 40) {
     				kelas.get(j).setNilaiHuruf("E");
