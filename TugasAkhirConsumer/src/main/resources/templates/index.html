@@ -16,6 +16,12 @@
                     <div>
                         <h3>Selamat datang di Sistem Informasi Akademik</h3>
                     </div>
+                    <div th:if="${param.error}">
+						Invalid username and password.
+					</div>
+					<div th:if="${param.logout}">
+						You have been logged out.
+					</div>
                     <form th:method="post" th:action="@{/login}" class="form">
                         <div class="content">
                             <div class="input-group form-group-no-border input-lg">
