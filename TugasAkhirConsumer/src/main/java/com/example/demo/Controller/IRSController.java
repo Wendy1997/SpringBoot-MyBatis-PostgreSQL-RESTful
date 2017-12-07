@@ -84,6 +84,25 @@ public class IRSController {
         return "ubah-irs";
     }
 
+    @GetMapping("/irs/update/{id}")
+    public String irsUpdateAdmin(@PathVariable(value="id") String id, Model model){
+        IRS irs = irsService.getIRS(id);
+        String kelas = "";
+        if(irs.getKelas_list().size() > 0){
+            for(int i = 0 ; i < irs.getKelas_list().size(); i++){
+                if(i < irs.getKelas_list().size() - 1){
+                    kelas += irs.getKelas_list().get(i).getId() + ",";
+                } else{
+                    kelas += irs.getKelas_list().get(i).getId();
+                }
+            }
+        }
+        model.addAttribute("idMahasiswa", id);
+        model.addAttribute("irs", irs);
+        model.addAttribute("kelas", kelas);
+        return "ubah-irs";
+    }
+
     @GetMapping("/irs/update/submit")
     public void irsUpdateSubmit(HttpServletRequest request, HttpServletResponse response) throws IOException{
         IRS irs = new IRS();

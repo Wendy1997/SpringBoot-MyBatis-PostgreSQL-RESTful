@@ -39,7 +39,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter
 		.authorizeRequests()
 		.antMatchers("/mahasiswa/viewall", "/mahasiswa/view/**", "/mahasiswa/add",
 				"/mahasiswa/update", "/mahasiswa/update/**" , "/mahasiswa/delete").hasAnyRole("ADMIN")
-		.antMatchers("/mahasiswa/riwayat", "/mahasiswa/ringkasan", "/mahasiswa", "/irs/**").hasRole("USER")
+		.antMatchers("/mahasiswa/riwayat/**", "/mahasiswa/ringkasan", "/mahasiswa", "/irs/**").hasRole("USER")
 		.and().formLogin().loginPage("/login").successHandler(customSuccessHandler)
 		.and().logout().permitAll().logoutSuccessUrl("/login").and();
 	}

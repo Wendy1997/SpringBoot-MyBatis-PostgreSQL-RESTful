@@ -52,7 +52,6 @@ public class MahasiswaDatabaseController {
     		Map<String, Object> fakultas = fakultasDAO.namaFakultas(view.getId_univ(), view.getId_fakultas());
     		Map<String, Object> resultFakultas = (Map<String, Object>) fakultas.get("result");
     		Map<String, Object> namafakultas = (Map<String, Object>) resultFakultas.get("fakultas");
-    		System.out.println(resultFakultas.get("fakultas"));
 
     		String namaFakultas = namafakultas.get("nama_fakultas").toString();
     		view.setNama_fakultas(namaFakultas);

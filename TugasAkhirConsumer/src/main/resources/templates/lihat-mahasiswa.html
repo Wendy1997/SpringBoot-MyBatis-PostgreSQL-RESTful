@@ -51,7 +51,7 @@
                                             <p th:text="'Prodi : ' + ${mahasiswa.nama_prodi}">Jurusan : Sistem Informasi</p>
                                             <p th:if="${mahasiswa.is_dapat_lulus} == 0" th:text='Belum Lulus'>Belum lulus</p>
                                             <p th:if="${mahasiswa.is_dapat_lulus}" th:text='Lulus'>Belum lulus</p>
-                                            <div class="text-center"><button class="btn btn-primary btn-round" type="button">Ubah IRS</button></div>
+                                            <div class="text-center"><a th:href="'/irs/update/' + ${mahasiswa.id}" class="btn btn-primary btn-round" >Ubah IRS</a></div>
                                     </div>
                                 </div>
                             </div>
