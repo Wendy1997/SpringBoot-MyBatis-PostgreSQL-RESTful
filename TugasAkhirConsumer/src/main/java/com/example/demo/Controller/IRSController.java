@@ -3,7 +3,10 @@ package com.example.demo.Controller;
 import com.example.demo.Model.IRS;
 import com.example.demo.Model.Kelas;
 import com.example.demo.Service.IRSService;
+import com.example.demo.Service.MahasiswaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,18 +27,20 @@ public class IRSController {
     @Autowired
     IRSService irsService;
 
-    @GetMapping("/irs/view/{id}")
-    public String irsView(@PathVariable(value="id") String id, Model model){
-    	model.addAttribute("idMahasiswa", id);
+    @Autowired
+    MahasiswaService mahasiswaServiceService;
+
+    @GetMapping("/irs/view")
+    public String irsView(Model model){
+    	model.addAttribute("idMahasiswa", mahasiswaServiceService.getId(getPrincipal()));
         return "lihat-irs";
     }
 
     @GetMapping("/irs/add")
     public String irsAdd(Model model){
 
-        model.addAttribute("id_mahasiswa", "1");
+        model.addAttribute("id_mahasiswa", mahasiswaServiceService.getId(getPrincipal()));
         model.addAttribute("id_term", "6");
-        model.addAttribute("idMahasiswa", "1");
         return "isi-irs";
     }
 
@@ -59,23 +64,23 @@ public class IRSController {
         response.getWriter().println(request.getParameter("id_mahasiswa"));
     }
 
-    @GetMapping("/irs/update/{id}")
-    public String irsUpdate(@PathVariable(value="id") String id, Model model){
-        IRS irs = irsService.getIRS(id);
+    @GetMapping("/irs/update")
+    public String irsUpdate(Model model){
+        IRS irs = irsService.getIRS(mahasiswaServiceService.getId(getPrincipal())+"");
         String kelas = "";
         if(irs.getKelas_list().size() > 0){
             for(int i = 0 ; i < irs.getKelas_list().size(); i++){
                 if(i < irs.getKelas_list().size() - 1){
-                    kelas += irs.getKelas_list().get(i) + ",";
+                    kelas += irs.getKelas_list().get(i).getId() + ",";
                 } else{
-                    kelas += irs.getKelas_list().get(i);
+                    kelas += irs.getKelas_list().get(i).getId();
                 }
             }
         }
 
         model.addAttribute("irs", irs);
         model.addAttribute("kelas", kelas);
-        model.addAttribute("idMahasiswa", id);
+        model.addAttribute("idMahasiswa", mahasiswaServiceService.getId(getPrincipal()));
         return "ubah-irs";
     }
 
@@ -97,5 +102,18 @@ public class IRSController {
         irsService.updateIRS(irs);
 
         response.getWriter().println(request.getParameter("id_mahasiswa"));
+    }
+
+    private String getPrincipal(){
+        String userName = null;
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        if (principal instanceof UserDetails) {
+            userName = ((UserDetails)principal).getUsername();
+        } else {
+            userName = principal.toString();
+        }
+
+        return userName;
     }
 }

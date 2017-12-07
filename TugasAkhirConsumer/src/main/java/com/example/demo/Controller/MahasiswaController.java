@@ -103,8 +103,6 @@ public class MahasiswaController {
     public String mahasiswaRingkasan(ModelMap model){
     	Mahasiswa mahasiswa = mahasiswaDAO.view(mahasiswaDAO.getId(getPrincipal()));
 		
-        System.out.println(mahasiswa);
-		
         Map<String, Object> fakultas = fakultasDAO.namaFakultas(mahasiswa.getId_univ(), mahasiswa.getId_fakultas());
 		Map<String, Object> resultFakultas = (Map<String, Object>) fakultas.get("result");
 		Map<String, Object> namafakultas = (Map<String, Object>) resultFakultas.get("fakultas");
@@ -133,6 +131,7 @@ public class MahasiswaController {
         } else {
             userName = principal.toString();
         }
+
         return userName;
     }
 }
