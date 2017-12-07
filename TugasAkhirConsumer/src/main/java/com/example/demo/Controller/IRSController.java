@@ -78,6 +78,7 @@ public class IRSController {
             }
         }
 
+        model.addAttribute("id", mahasiswaServiceService.getId(getPrincipal()));
         model.addAttribute("irs", irs);
         model.addAttribute("kelas", kelas);
         model.addAttribute("idMahasiswa", mahasiswaServiceService.getId(getPrincipal()));
@@ -97,6 +98,8 @@ public class IRSController {
                 }
             }
         }
+
+        model.addAttribute("id", mahasiswaServiceService.getId(getPrincipal()));
         model.addAttribute("idMahasiswa", id);
         model.addAttribute("irs", irs);
         model.addAttribute("kelas", kelas);
@@ -117,10 +120,8 @@ public class IRSController {
         }
 
         irs.setKelas_list(kelas_list);
-
         irsService.updateIRS(irs);
-
-        response.getWriter().println(request.getParameter("id_mahasiswa"));
+        response.getWriter().println(mahasiswaServiceService.view(Integer.parseInt(request.getParameter("id_mahasiswa"))).getNpm());
     }
 
     private String getPrincipal(){

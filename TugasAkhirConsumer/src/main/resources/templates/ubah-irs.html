@@ -127,6 +127,7 @@
                                         <input type="hidden" id="id_mahasiswa" name="id_mahasiswa" th:value="${irs.id_mahasiswa}" />
                                         <input type="hidden" id="id_term" name="id_term" th:value="${irs.id_term}" />
                                         <input type="hidden" id="kelas" name="kelas" th:value="${kelas}" />
+                                        <input type="hidden" id="id" name="id" th:value="${id}" />
                                     </form>
                                     <!--END SECTION MATKUL-->
 
@@ -144,8 +145,9 @@
 </body>
 <div th:replace="fragment :: javascript"></div>
 
-<script>
+<script th:inline="javascript">
     $(document).ready(function () {
+        var idAccess = $('#id').val();
         var radio = {};
 
         var irs_list = $('#kelas').val().split(",");
@@ -185,7 +187,12 @@
                     id_term: id_term
                 },
                 success: function (response) {
-                    window.location.href = "/irs/view/" + response;
+                    if(idAccess == id_mahasiswa){
+                        window.location.href = "/irs/view/";
+                    }
+                    else {
+                        window.location.href = "/mahasiswa/view/" + response;
+                    }
                 }
             });
         });

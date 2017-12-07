@@ -39,7 +39,7 @@ public class LoginController {
     	int counter = 0;
     	
     	String[] nama = viewall.get(viewall.size()-1).getNama().split(" ");
-		if(nama.length > 0) {
+		if(nama.length > 1) {
 			username = nama[0].toLowerCase() + "." + nama[1].toLowerCase();
 		} else {
 			username = nama[0].toLowerCase();
@@ -49,7 +49,7 @@ public class LoginController {
 			if(i != viewall.size()) {
 				String[] namaTemp = viewall.get(i).getNama().split(" ");
 				String usernameTemp = "";
-				if(namaTemp.length > 0) {
+				if(namaTemp.length > 1) {
 					usernameTemp = namaTemp[0].toLowerCase() + "." + namaTemp[1].toLowerCase();
 					if(username.equalsIgnoreCase(usernameTemp)) {
 						counter = counter + 1;
