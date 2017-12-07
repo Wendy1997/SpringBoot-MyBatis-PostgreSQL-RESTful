@@ -163,7 +163,7 @@
 				var html = '<option value="">--Pilih fakultas</option>';
 	            for(var i in obj ){
 	                console.log(fakultas + " " + obj[i].id_fakultas)
-	            		if(fakultas == obj[i].id_fakultas) {
+	            		if(id == obj[i].id_fakultas) {
 	                        html += '<option selected ="selected" value="' + obj[i].id_fakultas + '">' + obj[i].nama_fakultas + '</option>';
 	            		} else {
                             html += '<option value="' + obj[i].id_fakultas + '">' + obj[i].nama_fakultas + '</option>'
